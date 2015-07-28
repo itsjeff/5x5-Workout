@@ -1,0 +1,489 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Open sans", sans-serif;
+}
+
+header {
+	background-color: #1963bf;
+	position: relative;
+	height: 50px;
+	padding: 0 18px;
+	z-index: 4;
+}
+
+header h1 {
+	font-size: 16px;
+	line-height: 50px;
+	}
+	
+header a {
+	color: #fff;
+	text-decoration: none;
+	}
+	
+footer {
+	font-size: 13px;
+	padding: 36px 18px;
+	border-top: 1px solid #ccc;
+	text-align: center;
+	}
+	
+h4 {
+	margin: 18px 0;
+	}
+	
+ol {
+	margin: 0 0 0 20px;
+	}
+	
+ol li {
+	margin-bottom: 10px;
+	}
+	
+p {
+	margin-bottom: 10px;
+	}
+	
+.center {
+	text-align: center;
+	}
+	
+.wrapper {
+	max-width: 100%;
+	margin: 0 auto;	
+}
+
+.list {
+	margin: 0 18px 0;
+	}
+	
+.list li {
+	margin: 0 0 10px;
+	}
+	
+.userSign {
+	float: right;
+}
+
+.userSign li {
+	display: inline-block;
+}
+
+.userSign li a {
+	height: 50px;
+	line-height: 50px;
+	display: inline-block;
+	padding: 0 15px;
+	text-decoration: none;
+	font-size: 14px;
+	}
+	
+.userSign li a:hover {
+	background-color: #333;
+	color: #fff;
+	}
+	
+.block-button {
+	background-color: #287ee8;
+	color: #fff;
+	display: block;
+	padding: 10px;
+	border-radius: 3px;
+	border: 0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	
+	text-decoration: none;
+	margin: 0 auto;
+	width: 200px;
+	}
+	
+/*
+ * Content
+ */
+.backNav {
+	background-color: #f7f7f7;
+	position: fixed;
+	width: 250px;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	}
+	
+#drop {
+	background-size: 14px 13px;
+	display: none;
+	padding: 0px;
+	width: 30px;
+	}
+	
+#nav {
+	float: left;
+	width: 250px;
+	}
+	
+#nav ul, #nav ul li {
+	margin: 0;
+	}
+	
+#nav ul li a {
+	color: #666;
+	display: block;
+	padding: 18px 18px;
+	margin: 0;
+	text-decoration: none;
+	}
+	
+#nav ul li .ico-workout  {
+	background: url('../images/ico-workout.png') 12px 50% no-repeat;
+	background-size: 20px 20px;
+	padding-left: 42px;
+	}
+	
+#nav ul li .ico-calendar  {
+	background: url('../images/ico-calendar.png') 12px 50% no-repeat;
+	background-size: 20px 20px;
+	padding-left: 42px;
+	}
+	
+#nav ul li .ico-workout-info {
+	background: url('../images/ico-workout-info.png') 12px 50% no-repeat;
+	background-size: 20px 20px;
+	padding-left: 42px;
+	}
+	
+#nav ul li a:hover {
+	background-color: #efefef;
+	}
+	
+#content {
+	margin: 0 0 0 250px;
+	}
+	
+#content .padding {
+	padding: 18px;
+	}
+	
+.row:after {
+	clear: both;
+	display: table;
+	content: "";
+	}
+	
+	
+/*
+ * Workout
+ */
+.date {
+	background-color: #f7f7f7;
+	border: 1px solid #efefef;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	padding: 10px;
+	margin: 18px 0;
+	}
+	
+.date a {
+	font-size: 14px;
+	text-decoration: none;
+	}
+	
+.updated_on {
+	display: block;
+	margin-top: 14px;
+}
+	
+.exercise {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	box-shadow: 0 2px 2px #efefef;
+	margin: 0 0 18px;
+	
+	position: relative;
+	
+	/* Remove text highlight */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	}
+	
+.exercise a {
+	color: #1963bf;
+	text-decoration: none;
+	}
+	
+.exercise a:hover {
+	color: #222;
+	}
+	
+.exercise.end {
+	margin: 0;
+	}
+	
+.exercise h4 {
+	padding: 10px;
+	margin: 0;
+	border-bottom: 1px solid #efefef;
+	}
+	
+.exercise h4 .right {
+	float: right;
+	font-weight: normal;
+	}
+	
+.exercise .sets {
+	padding: 10px;
+	}
+	
+.exercise .sets span {
+	background-color: #efefef;
+	border-radius: 50%;
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	line-height: 40px;
+	margin: 0 20px 0 0;
+	
+	/* transition effect */
+	transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	text-decoration: none;
+	}
+	
+.exercise .sets span:hover {
+	background-color: #ccc;
+	}
+
+#finish {
+	overflow: hidden;
+	}
+	
+#finish input[type="submit"] {
+	background-color: #666;
+	border: 0;
+	color: #fff;
+	display: inline-block;
+	font-size: 20px;
+	padding: 36px 0;
+	width: 100%;
+	text-align:center;
+	
+	/* transition effect */
+	transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	text-decoration: none;
+	}
+	
+#finish input:hover {
+	background-color: #999;
+	}
+	
+.panelBox {
+	background-color: #f7f7f7;
+	border: 1px solid #ccc;
+	margin-top: 10px;
+	padding: 18px;
+	width: 400px;
+	position: absolute;
+	right: 0;
+	display: none;
+	z-index: 2;
+}
+
+.panelBox input {
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	font-size: 16px;
+	padding: 5px 10px;
+	}
+	
+.panelBox .submit {
+	background-color: #666;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	color: #fff;
+	padding: 5px 8px;
+	}
+	
+.panelBox .submit:hover {
+	color: #fff;
+	}
+	
+	
+/*
+ * Calendar
+ */
+#calendar {
+	background-color: #efefef;
+	border-spacing: 0px;
+	margin-bottom: 54px;
+	width: 100%;
+	}	
+	
+#calendar th {
+	background-color: #5789cd;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	padding: 10px 0;
+	width: 14.2%
+	}
+	
+#calendar td {	
+	border-bottom: 1px solid #efefef;
+	text-align: center;
+	padding: 40px 0;
+	width: 14.2%
+	}
+	
+.calendar-day {
+	background-color: #fff;
+	}
+	
+.calendar-day.active {
+	background-color: #adcaf2;
+	}
+	
+.calendar-day.active a {
+	color: #fff;
+	font-weight: bold;
+	}
+@media all and (max-width: 900px) 
+{
+	/*
+	 * Content
+	 */
+	body {
+		background-color: #f7f7f7;
+	}
+	
+	header {
+		padding-right: 0px;
+		}
+	
+	.backNav {
+		display: none;
+	}
+	
+	#nav {
+		background-color: #fff;
+		border-bottom: 1px solid #ccc;
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	
+	#content {
+		margin: 0;
+	}
+	
+	#nav ul li {
+		display: inline-block;
+	}
+	
+	#nav ul li a{
+		display: inline-block;
+	}
+	
+	#nav ul li a:hover {
+		background-color: #f7f7f7;
+		}
+		
+	.date {
+		background-color: #fff;
+		}
+	 
+}
+
+@media all and (max-width: 600px) 
+{
+	/*
+	 * Nav
+	 */
+	#nav ul li .ico-calendar {
+		background: url('../images/ico-calendar.png') 50% 50% no-repeat;
+		background-size: 25px 25px;
+		width: 45px;
+		text-indent: -9999px;
+		}
+		
+	#nav ul li .ico-workout {
+		background: url('../images/ico-workout.png') 50% 50% no-repeat;
+		background-size: 35px 35px;
+		width: 45px;
+		text-indent: -9999px;
+		}
+		
+	#nav ul li .ico-workout-info {
+		background: url('../images/ico-workout-info.png') 50% 50% no-repeat;
+		background-size: 25px 25px;
+		width: 45px;
+		text-indent: -9999px;
+		}
+	
+
+	/*
+	 * User menu
+	 */
+	#drop {
+		background: url('../images/hamburger.png') 50% 50% no-repeat;
+		background-size: 28px 28px;
+		display: block;
+		padding: 0 18px;
+		height: 50px;
+		text-indent: -9999px;
+		line-height: 40px;
+		}
+		
+	.userSign {
+		float: right;
+		overflow: hidden;
+		right: 0;
+		}
+		
+	.userSign ul {
+		display: none;
+		background-color: #222;
+		left: 0;
+		margin: 0;
+		position: absolute;
+		width: 100%;
+	}
+		
+	.userSign ul li {
+		display: block;
+		line-height: 40px;
+		width: 100%;
+		}
+		
+	.userSign li a {
+		height: none;
+		margin: 0;
+		padding: 0 18px;
+		width: 100%;
+		}
+		
+		
+#calendar td {	
+	font-size: 14px;
+	padding: 15px 0;
+	}
+}
