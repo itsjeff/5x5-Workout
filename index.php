@@ -65,7 +65,7 @@ switch($uri) {
 		break;
 		
 	case 'dashboard/save':
-		echo '<pre>';
+		
 		
 		$userId = $_SESSION['userId'];
 		$updateTodaysWorkout = date('Y-m-d H:i:s');
