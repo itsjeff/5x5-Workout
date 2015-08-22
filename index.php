@@ -70,9 +70,6 @@ switch($uri) {
 		
 		// Check if user_workout row exists and update
 		// Place update code below here later
-		
-		//echo '<pre>';
-		//var_dump($userId . ' ' . $updateTodaysWorkout);
 		$workout_data = $_POST['exercise'];
 		$workout_weight = $_POST['currentWeight'];
 		
@@ -87,8 +84,6 @@ switch($uri) {
 				
 				$sets_reps .= ($i < count($sets) - 1) ? ', ' : '';
 			}
-			
-			//echo 'uwi - '.$user_workout_id.' + '. $sets_reps . ' ' . $set_weight.'</br>';
 			
 			// Update query
 			$stmt = $db->prepare("UPDATE user_workout SET sets_reps = ?, set_weight = ?, updated_on = ? WHERE user_workout_id = ?");
