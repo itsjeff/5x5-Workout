@@ -65,14 +65,14 @@ switch($uri) {
 		break;
 		
 	case 'dashboard/save':
-		echo '<pre>';
-		
 		$userId = $_SESSION['userId'];
 		$updateTodaysWorkout = date('Y-m-d H:i:s');
 		
 		// Check if user_workout row exists and update
 		// Place update code below here later
-		var_dump($userId . ' ' . $updateTodaysWorkout);
+		
+		//echo '<pre>';
+		//var_dump($userId . ' ' . $updateTodaysWorkout);
 		$workout_data = $_POST['exercise'];
 		$workout_weight = $_POST['currentWeight'];
 		
@@ -88,7 +88,7 @@ switch($uri) {
 				$sets_reps .= ($i < count($sets) - 1) ? ', ' : '';
 			}
 			
-			echo 'uwi - '.$user_workout_id.' + '. $sets_reps . ' ' . $set_weight.'</br>';
+			//echo 'uwi - '.$user_workout_id.' + '. $sets_reps . ' ' . $set_weight.'</br>';
 			
 			// Update query
 			$stmt = $db->prepare("UPDATE user_workout SET sets_reps = ?, set_weight = ?, updated_on = ? WHERE user_workout_id = ?");
