@@ -2,7 +2,7 @@
 // Connect to database
 $db = new mysqli('localhost', 'root', '', '5x5');
 
-$view_path = 'application/views/';
+$view_path = 'app/views/';
 
 //  Bring in the spl_loader
 require_once('core/Loader.php');

@@ -4,9 +4,7 @@ spl_autoload_register('autoload');
 
 function autoload($className)
 {
-	$dir = 'core/';
-	
-	if (file_exists($classFile = $dir . str_replace('\\', '/', $className) . '.php')) {
+	if (file_exists($classFile = str_replace('\\', '/', $className) . '.php')) {
 		require_once $classFile;
 	}
 }
