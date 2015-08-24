@@ -26,7 +26,6 @@ if (isSignedIn()) {
 }
 
 
-
 // Pages
 switch($urlRequest) {
 	case 'dashboard':

@@ -198,6 +198,14 @@ p {
 	display: block;
 	margin-top: 14px;
 }
+
+.date .prev-month {
+	float: left;
+}
+
+.date .next-month {
+	float: right;
+}
 	
 .exercise {
 	background-color: #fff;

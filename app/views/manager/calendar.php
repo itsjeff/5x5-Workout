@@ -1,43 +1,30 @@
-<?php
-// HTML title
-$head_title = 'Calendar';
-
-// Get days use went to gym
-$userId = trim(htmlspecialchars($_SESSION['userId']));
-
-$calendar_stmt = $db->prepare('SELECT created_on FROM user_workout WHERE user_id = ? GROUP BY created_on');
-$calendar_stmt->bind_param('i', $userId);
-$calendar_stmt->execute();
-$calendar_stmt->bind_result($created_on);
-$calendar_stmt->store_result();
-
-$eventLog = array();
-
-// Store event in array to call from looped month later
-while ($calendar_stmt->fetch()) {
-	$timestamp = strtotime($created_on);
-	$day = date('j', $timestamp);
-	$eventLog[$day] = true;
-}
-
-
-// Calendar
-$month = 3;
-$year = 2015;
-
-$firstDay = date('N', mktime(0,0,0, $month, 1, $year));
-$daysInMonth = date('t', mktime(0,0,0, $month, 1, $year));
-
-$daysInWeek = 1;
-?>
-
 <?php include_once('_header.php'); ?>
 		
 	<div id="content">
 		<div class="padding">
 			<h2>Calendar</h2>
 			
-			<div class="date center">March 2015</div>
+			<div class="date center">
+				<form method="post">
+					<select name="month">
+						<?php foreach ($monthArray as $key => $val) {
+							$selectMonth = ($key == $currentMonth) ? ' selected' : '';
+							echo '<option value="'.$key.'"'.$selectMonth.'>'.$val.'</option>';
+						}
+						?>
+					</select>
+
+					<select name="year">
+						<?php 
+						for ($i = 1988; $i <= date('Y'); $i++) {
+							$selectYear = ($i == $currentYear) ? ' selected' : '';
+							echo '<option value="'.$i.'"'.$selectYear.'>'.$i.'</option>';
+						}
+						?>
+					</select>
+					<input name="submit" type="submit" value="go">
+				</form>
+			</div>
 			
 			<table id="calendar">
 			<tr>
@@ -68,12 +55,14 @@ $daysInWeek = 1;
 					
 					$daysInWeek = 1;
 				}
+
+				$padDay   = str_pad($day, 2, '0', STR_PAD_LEFT);
+				$padMonth = str_pad($currentMonth, 2, '0', STR_PAD_LEFT);
+
+				$fullDate = $currentYear.'-'.$padMonth.'-'.$padDay;
 				
-				if (array_key_exists($day, $eventLog)) {
-					$padDay = str_pad($day, 2, '0', STR_PAD_LEFT);
-					$padMonth = str_pad($month, 2, '0', STR_PAD_LEFT);
-					
-					$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
+				if (array_key_exists($fullDate, $eventLog)) {
+					$workoutDate = $currentYear.'-'.$padMonth.'-'.$padDay;
 					
 					echo "<td class=\"calendar-day active\"><a href=\"?uri=dashboard&amp;date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
 				} else {
