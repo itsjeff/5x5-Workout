@@ -1,10 +1,15 @@
 <?php
 namespace App\Controllers;
 
-use \App\User;
+use App\User;
 
 class Home
 {
+	public function __construct()
+	{
+
+	}
+
 	/**
 	 * [index description]
 	 * 
