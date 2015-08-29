@@ -16,6 +16,6 @@ class Dashboard
 	 */
 	public function index($db, $myEmail)
 	{
-		include('app/views/manager/dashboard.php');
+		include('app/Views/manager/dashboard.php');
 	}
 }

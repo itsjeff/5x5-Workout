@@ -5,7 +5,11 @@ class User
 {
 	protected $sessionId = 'userId';
 
-
+	public function foo()
+	{
+		echo 'test';
+	}
+	
 	/**
 	 * Determine if user is logged in or not
 	 * based off session
