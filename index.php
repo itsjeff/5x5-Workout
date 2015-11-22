@@ -55,8 +55,6 @@ switch($uri) {
 			}
 		}
 		
-		//var_dump($values);
-		
 		if($db->query("INSERT INTO user_workout (user_id, workout_plan_id, created_on) VALUES $values")) {
 			header('Location: ?uri=dashboard');
 		} else {
