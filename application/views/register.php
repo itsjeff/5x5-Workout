@@ -54,7 +54,7 @@ if (isset($_POST['register'])) {
 		// Log in user straight away
 		$_SESSION['userId'] = $stmt->insert_id;
 		
-		header('Location: ?uri=dashboard');
+		header('Location: /dashboard');
 	}
 }
 ?>
@@ -104,7 +104,7 @@ if (isset($_POST['register'])) {
 		 
 			<div class="row">
 				<input class="button" type="submit" name="register" value="Register"> 
-				<a href="?uri=signin">Already a member? Sign In.</a>
+				<a href="/signin">Already a member? Sign In.</a>
 			</div>
 			</form>
 			

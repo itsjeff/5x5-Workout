@@ -5,10 +5,10 @@
 
 	<title><?php echo $head_title; ?> | 5x5 Workout Manager</title>
 
-	<link rel="stylesheet" href="assets/css/manager.css">
+	<link rel="stylesheet" href="/assets/css/manager.css">
 	
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/5x5.js"></script>
+	<script src="/assets/js/jquery.js"></script>
+	<script src="/assets/js/5x5.js"></script>
 </head>
 <body>
 	<header>
@@ -17,7 +17,7 @@
 				<a id="drop" href="#">Menu</a>
 				<ul>
 					<li><a href="">Welcome, <strong><?php echo $myEmail; ?></strong></a></li>
-					<li><a href="?uri=signout">Sign out</a></li>
+					<li><a href="/signout">Sign out</a></li>
 				</ul>
 			</div>
 			
@@ -30,8 +30,8 @@
 	<div class="row">	
 		<div id="nav">
 			<ul>
-				<li><a class="ico-workout" href="?uri=dashboard" title="Start Workout">Start Workout</a></li>
-				<li><a class="ico-calendar" href="?uri=calendar" title="Calendar">Calendar History</a></li>
-				<li><a class="ico-workout-info" href="?uri=information" title="Information">Workout Information</a></li>
+				<li><a class="ico-workout" href="/dashboard" title="Start Workout">Start Workout</a></li>
+				<li><a class="ico-calendar" href="/calendar" title="Calendar">Calendar History</a></li>
+				<li><a class="ico-workout-info" href="/information" title="Information">Workout Information</a></li>
 			</ul>
 		</div>

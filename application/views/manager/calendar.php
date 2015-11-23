@@ -79,7 +79,7 @@ $daysInWeek = 1;
 					
 					$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
 					
-					echo "<td class=\"calendar-day active\"><a href=\"?uri=dashboard&amp;date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
+					echo "<td class=\"calendar-day active\"><a href=\"/dashboard?date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
 				} else {
 					echo "<td class=\"calendar-day\">".$day."</td>\n";
 				}

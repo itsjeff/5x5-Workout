@@ -36,7 +36,7 @@ $stmt->bind_result($exercise_name, $user_workout_id, $start_sets_reps, $start_we
 <?php include_once('_header.php'); ?>
 
 		<div id="content">
-			<form method="post" action="?uri=dashboard/save">
+			<form method="post" action="/dashboard/save">
 
 <?php 
 if ($countWorkout < 1) {
@@ -44,7 +44,7 @@ if ($countWorkout < 1) {
 
 	<div style="text-align: center; padding-top: 72px;" class="padding">
 		<p>You don't have workout for today.</p>
-		<a class="block-button" href="?uri=dashboard/create">Create New Workout</a>
+		<a class="block-button" href="/dashboard/create">Create New Workout</a>
 	</div>
 	
 <?php

@@ -38,7 +38,7 @@ if (isset($_POST['signin'])) {
 	if (count($errors) < 1) {
 		$_SESSION['userId'] = $userId;
 		
-		header('Location: ?uri=dashboard');
+		header('Location: /dashboard');
 	}
 }
 ?>
@@ -78,7 +78,7 @@ if (isset($_POST['signin'])) {
 		 
 			<div class="row">
 				<input class="button" type="submit" name="signin" value="Sign In"> 
-				<a href="?uri=register">Not a member? Register now.</a>
+				<a href="/register">Not a member? Register now.</a>
 			</div>
 			</form>
 			

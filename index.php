@@ -1,19 +1,8 @@
 <?php
 require_once('settings.php');
 
-$uri = (isset($_GET['uri'])) ? htmlspecialchars($_GET['uri']) : '';
-
-
-// quick function
-function isSignedIn() {
-	if (isset($_SESSION['userId']) && $_SESSION['userId'] > 0) {
-		return true;
-	}
-}
-
-
 // User information
-if (isSignedIn()) {
+if ($user->isSignedIn()) {
 	$userId = (int)$_SESSION['userId'];
 
 	$user_stmt = $db->prepare("SELECT email FROM users WHERE id = ?");
@@ -24,21 +13,23 @@ if (isSignedIn()) {
 	$user_stmt->fetch();
 }
 
-
+// Get uri for pretty urls
+$end_uri     = (!isset($_SERVER['REQUEST_URI'])) ?: ltrim(htmlspecialchars($_SERVER['REQUEST_URI']), '/');
+$current_uri = explode('?', $end_uri);
 
 // Pages
-switch($uri) {
+switch($current_uri[0]) {
 	case 'dashboard':
-		if (!isSignedIn()) {
-			header('Location: ?uri=signin');
+		if (!$user->isSignedIn()) {
+			header('Location: /signin');
 		}
 		
 		require_once($view_path . 'manager/dashboard.php');
 		break;
 		
 	case 'dashboard/create':
-		if (!isSignedIn()) {
-			header('Location: ?uri=signin');
+		if (!$user->isSignedIn()) {
+			header('Location: /signin');
 		}
 		
 		$userId = $_SESSION['userId'];
@@ -47,7 +38,6 @@ switch($uri) {
 		$created_on = date('Y-m-d H:i:s');
 		
 		for($i = 1; $i <= $limit; $i++) {
-			
 			$values .= '('.$userId.', '.$i.', \''.$created_on.'\')';
 			
 			if ($i < $limit) {
@@ -56,29 +46,26 @@ switch($uri) {
 		}
 		
 		if($db->query("INSERT INTO user_workout (user_id, workout_plan_id, created_on) VALUES $values")) {
-			header('Location: ?uri=dashboard');
+			header('Location: /dashboard');
 		} else {
 			$db->error;
 		}		
 		break;
 		
-	case 'dashboard/save':
-		
-		
+	case 'dashboard/save':			
 		$userId = $_SESSION['userId'];
 		$updateTodaysWorkout = date('Y-m-d H:i:s');
 		
 		// Check if user_workout row exists and update
 		// Place update code below here later
-		var_dump($userId . ' ' . $updateTodaysWorkout);
-		$workout_data = $_POST['exercise'];
+		$workout_data   = $_POST['exercise'];
 		$workout_weight = $_POST['currentWeight'];
 		
 		foreach ($workout_data as $user_workout_id => $sets) {
 			$user_workout_id = (int) $user_workout_id;
+
 			$set_weight = $workout_weight[$user_workout_id][0];
-			
-			$sets_reps = '';
+			$sets_reps  = '';
 			
 			for($i = 0; $i < count($sets); $i++) {
 				$sets_reps .= $sets[$i];
@@ -86,66 +73,61 @@ switch($uri) {
 				$sets_reps .= ($i < count($sets) - 1) ? ', ' : '';
 			}
 			
-			echo 'uwi - '.$user_workout_id.' + '. $sets_reps . ' ' . $set_weight.'</br>';
-			
 			// Update query
 			$stmt = $db->prepare("UPDATE user_workout SET sets_reps = ?, set_weight = ?, updated_on = ? WHERE user_workout_id = ?");
 			$stmt->bind_param('sssi', $sets_reps, $set_weight, $updateTodaysWorkout, $user_workout_id);
 			$stmt->execute();
 			
-			header('Location: ?uri=dashboard');
+			header('Location: /dashboard');
 		}
 		break;
 		
 	case 'calendar':
-		if (!isSignedIn()) {
-			header('Location: ?uri=signin');
+		if (!$user->isSignedIn()) {
+			header('Location: /signin');
 		}
 		
 		require_once($view_path . 'manager/calendar.php');
 		break;
 		
 	case 'information':
-		if (!isSignedIn()) {
-			header('Location: ?uri=signin');
+		if (!$user->isSignedIn()) {
+			header('Location: /signin');
 		}
 		
 		require_once($view_path . 'manager/information.php');
 		break;
 		
 	case 'exercise':
-		if (!isSignedIn()) {
-			header('Location: ?uri=signin');
+		if (!$user->isSignedIn()) {
+			header('Location: /signin');
 		}
 		
 		require_once($view_path . 'manager/exercise.php');
 		break;
 		
 	case 'signin':
-		if (isSignedIn()) {
-			header('Location: ?uri=dashboard');
+		if ($user->isSignedIn()) {
+			header('Location: /dashboard');
 		}
 		
 		require_once($view_path . 'signin.php');
 		break;
 		
 	case 'register':
-		if (isSignedIn()) {
-			header('Location: ?uri=dashboard');
+		if ($user->isSignedIn()) {
+			header('Location: /dashboard');
 		}
 		
 		require_once($view_path . 'register.php');
 		break;
 		
 	case 'signout':
-		if (isSignedIn()) {
-			if (isset($_COOKIE[session_name()])) {
-				setcookie(session_name(), '', time()-300, '/');
-			}
-			session_destroy();
+		if ($user->isSignedIn()) {
+			$user->signOut();
 		}
 		
-		header('Location: ?uri=signin');
+		header('Location: /signin');
 		break;
 		
 	default: 

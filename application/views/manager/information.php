@@ -28,7 +28,7 @@ if ($exercise_id) {
 				<?php if ($exercise_id && $exists > 0) { ?>
 				
 				<h2><?php echo $exercise_name; ?></h2>
-				<h3 style="font-weight: normal;"><a href="?uri=information" title="Back to Information">Workout Information</a></h3>
+				<h3 style="font-weight: normal;"><a href="/information" title="Back to Information">Workout Information</a></h3>
 				
 				<h4>Description:</h4>
 				
@@ -43,7 +43,7 @@ if ($exercise_id) {
 				<h4>Exercise workourts</h4>
 				<ol>
 					<?php while($row = $results->fetch_object()) { ?>
-					<li><a href="?uri=information&amp;exercise_id=<?php echo $row->exercise_id; ?>" title="<?php echo $row->exercise_name; ?>"><?php echo $row->exercise_name; ?></a></li>
+					<li><a href="/information?exercise_id=<?php echo $row->exercise_id; ?>" title="<?php echo $row->exercise_name; ?>"><?php echo $row->exercise_name; ?></a></li>
 					<?php } ?>
 				</ol>
 					

@@ -7,7 +7,7 @@
 			</div>
 		</div>
 	
-		<img src="assets/images/olympic-pull.jpg">
+		<img src="/assets/images/olympic-pull.jpg">
 	</div>
 
 	
@@ -35,7 +35,7 @@
 				</div>
 				
 				<div class="right">
-					<img class="frame" src="assets/images/preview-dashboard.jpg" alt="5x5 manager - dashboard">
+					<img class="frame" src="/assets/images/preview-dashboard.jpg" alt="5x5 manager - dashboard">
 				</div>
 			</div>
 			
@@ -60,7 +60,7 @@
 				</div>
 				
 				<div class="left">
-					<img class="frame" src="assets/images/preview-calendar.jpg" alt="5x5 manager - dashboard">
+					<img class="frame" src="/assets/images/preview-calendar.jpg" alt="5x5 manager - dashboard">
 				</div>
 			</div>
 			
@@ -81,7 +81,7 @@
 				</div>
 				
 				<div class="right">
-					<img class="frame" src="assets/images/preview-information.jpg" alt="5x5 manager - dashboard">
+					<img class="frame" src="/assets/images/preview-information.jpg" alt="5x5 manager - dashboard">
 				</div>
 			</div>
 			
@@ -104,7 +104,7 @@
 				</div>
 				
 				<div class="left">
-					<img src="assets/images/preview-repsonsive.png" alt="5x5 manager - dashboard">
+					<img src="/assets/images/preview-repsonsive.png" alt="5x5 manager - dashboard">
 				</div>
 				
 			</div>
@@ -131,7 +131,7 @@
 	
 	<div class="content gray center">
 		<div class="wrapper">
-			<p><a class="button" href="?uri=register" title="Take the challenge!">Take the challenge and sign up</a></p>
+			<p><a class="button" href="/register" title="Take the challenge!">Take the challenge and sign up</a></p>
 		</div>
 	</div>
 	
