@@ -28,6 +28,7 @@ switch($current_uri[0]) {
 		break;
 		
 	case 'dashboard/create':
+            if ( $_SERVER['REQUEST_METHOD'] == 'post') {
 		if (!$user->isSignedIn()) {
 			header('Location: /signin');
 		}
@@ -49,7 +50,8 @@ switch($current_uri[0]) {
 			header('Location: /dashboard');
 		} else {
 			$db->error;
-		}		
+		}
+            }		
 		break;
 		
 	case 'dashboard/save':			
