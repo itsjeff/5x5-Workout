@@ -22,11 +22,15 @@ while ($calendar_stmt->fetch()) {
 
 
 // Calendar
-$month = 3;
-$year = 2015;
+$date = new DateTime();
 
-$firstDay = date('N', mktime(0,0,0, $month, 1, $year));
-$daysInMonth = date('t', mktime(0,0,0, $month, 1, $year));
+$month_numeric = $date->format('n');
+$month_name    = $date->format('F');
+
+$year  = $date->format('Y');
+
+$firstDay    = date('N', mktime(0,0,0, $month_numeric, 1, $year));
+$daysInMonth = date('t', mktime(0,0,0, $month_numeric, 1, $year));
 
 $daysInWeek = 1;
 ?>
@@ -37,7 +41,7 @@ $daysInWeek = 1;
 		<div class="padding">
 			<h2>Calendar</h2>
 			
-			<div class="date center">March 2015</div>
+			<div class="date center"><?php echo $month_name.' '.$year; ?></div>
 			
 			<table id="calendar">
 			<tr>
@@ -71,7 +75,7 @@ $daysInWeek = 1;
 				
 				if (array_key_exists($day, $eventLog)) {
 					$padDay = str_pad($day, 2, '0', STR_PAD_LEFT);
-					$padMonth = str_pad($month, 2, '0', STR_PAD_LEFT);
+					$padMonth = str_pad($month_numeric, 2, '0', STR_PAD_LEFT);
 					
 					$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
 					
