@@ -3,20 +3,19 @@
 $host = 'localhost';
 $user = '';
 $pass = '';
-$db   = '5x5';
-
-$db = new mysqli($host, $user, $pass, $db);
+$database = '5x5';
 
 $view_path = 'application/views/';
-
 
 // Timezone
 date_default_timezone_set('Australia/Sydney');
 
+//Start session
 session_start();
 
-
 // Load a simple autoloader
-require_once('core/Loader.php');
+require_once 'core/Loader.php';
 
-$user = new core\User;
+$db = new mysqli($host, $user, $pass, $database);
+
+$user = new core\User($db);
