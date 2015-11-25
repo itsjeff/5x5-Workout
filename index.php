@@ -49,33 +49,9 @@ switch($current_uri[0]) {
 		
 	case 'dashboard/save':	
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$userId = $_SESSION['userId'];
-			$updateTodaysWorkout = date('Y-m-d H:i:s');
-			
-			// Check if user_workout row exists and update
-			// Place update code below here later
-			$workout_data   = $_POST['exercise'];
-			$workout_weight = $_POST['currentWeight'];
-			
-			foreach ($workout_data as $user_workout_id => $sets) {
-				$user_workout_id = (int) $user_workout_id;
+			$workout->updateWorkout();
 
-				$set_weight = $workout_weight[$user_workout_id][0];
-				$sets_reps  = '';
-				
-				for($i = 0; $i < count($sets); $i++) {
-					$sets_reps .= $sets[$i];
-					
-					$sets_reps .= ($i < count($sets) - 1) ? ', ' : '';
-				}
-				
-				// Update query
-				$stmt = $db->prepare("UPDATE user_workout SET sets_reps = ?, set_weight = ?, updated_on = ? WHERE user_workout_id = ?");
-				$stmt->bind_param('sssi', $sets_reps, $set_weight, $updateTodaysWorkout, $user_workout_id);
-				$stmt->execute();
-				
-				header('Location: /dashboard');
-			}
+			header('Location: /dashboard');
 		} 
 		else {
 			echo 'Only post requests are allowed.';
