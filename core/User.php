@@ -1,7 +1,7 @@
 <?php
 namespace core;
 
-Class User 
+class User 
 {
 	private $sessionId = 'userId';
 
