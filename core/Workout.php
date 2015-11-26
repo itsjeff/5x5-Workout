@@ -17,11 +17,36 @@ class Workout
 		$this->user = $user;
 	}
 
+	/**
+	 * Start new workout
+	 */
+	function create() 
+	{
+		$userId = $this->user->userId;
+		$values = '';
+		$limit = 8;
+		$created_on = date('Y-m-d H:i:s');
+		
+		for($i = 1; $i <= $limit; $i++) {
+			$values .= '('.$userId.', '.$i.', \''.$created_on.'\')';
+			
+			if ($i < $limit) {
+				$values .= ', ';
+			}
+		}
+		
+		if(!$db->query("INSERT INTO user_workout (user_id, workout_plan_id, created_on) VALUES $values")) {
+			return false;
+		}
+
+		return true;	
+	}
+	
 
 	/**
-	 * Save current workout
+	 * Finish workout
 	 */
-	function updateWorkout() 
+	function update() 
 	{
 		// User id
 		$userId = $this->user->userId;
@@ -30,7 +55,7 @@ class Workout
 		$updateTodaysWorkout = date('Y-m-d H:i:s');
 
 		// Array list of excerices, sets and reps
-		$workout_data   = $_POST['exercise'];
+		$workout_data = $_POST['exercise'];
 
 		// Array list of added weight to each excercise
 		$workout_weight = $_POST['currentWeight'];
