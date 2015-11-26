@@ -1,5 +1,5 @@
 <?php
-require_once('settings.php');
+require_once 'settings.php';
 
 // User information
 if ($user->isSignedIn()) {
@@ -19,7 +19,7 @@ switch($current_uri[0]) {
             header('Location: /signin');
         }
         
-        require_once($view_path . 'manager/dashboard.php');
+        require_once $view_path . 'manager/dashboard.php';
         break;
         
     case 'dashboard/create':
@@ -35,12 +35,12 @@ switch($current_uri[0]) {
         
         break;
         
-    case 'dashboard/save':  
+    case 'dashboard/save':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user->isSignedIn()) {
                 header('Location: /signin');
             }
-            
+
             $workout->update();
         }
 
@@ -60,7 +60,7 @@ switch($current_uri[0]) {
             header('Location: /signin');
         }
         
-        require_once($view_path . 'manager/information.php');
+        require_once $view_path . 'manager/information.php';
         break;
         
     case 'exercise':
@@ -68,7 +68,7 @@ switch($current_uri[0]) {
             header('Location: /signin');
         }
         
-        require_once($view_path . 'manager/exercise.php');
+        require_once $view_path . 'manager/exercise.php';
         break;
         
     case 'signin':
@@ -76,7 +76,7 @@ switch($current_uri[0]) {
             header('Location: /dashboard');
         }
         
-        require_once($view_path . 'signin.php');
+        require_once $view_path . 'signin.php';
         break;
         
     case 'register':
@@ -84,7 +84,7 @@ switch($current_uri[0]) {
             header('Location: /dashboard');
         }
         
-        require_once($view_path . 'register.php');
+        require_once $view_path . 'register.php';
         break;
         
     case 'signout':
@@ -95,7 +95,7 @@ switch($current_uri[0]) {
         header('Location: /signin');
         break;
         
-    default: 
-        require_once($view_path . 'home.php');
+    default:
+        require_once $view_path . 'home.php';
         break;
 }
