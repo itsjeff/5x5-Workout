@@ -21,7 +21,7 @@ switch ($current_uri[0]) {
 
         require_once $view_path.'manager/dashboard.php';
         break;
-        
+
     case 'dashboard/create':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user->isSignedIn()) {
@@ -51,15 +51,15 @@ switch ($current_uri[0]) {
         if (!$user->isSignedIn()) {
             header('Location: /signin');
         }
-        
-        require_once($view_path.'manager/calendar.php');
+
+        require_once $view_path.'manager/calendar.php';
         break;
 
     case 'information':
         if (!$user->isSignedIn()) {
             header('Location: /signin');
         }
-        
+
         require_once $view_path.'manager/information.php';
         break;
 
@@ -67,7 +67,7 @@ switch ($current_uri[0]) {
         if (!$user->isSignedIn()) {
             header('Location: /signin');
         }
-        
+
         require_once $view_path.'manager/exercise.php';
         break;
 
@@ -75,7 +75,7 @@ switch ($current_uri[0]) {
         if ($user->isSignedIn()) {
             header('Location: /dashboard');
         }
-        
+
         require_once $view_path.'signin.php';
         break;
 
