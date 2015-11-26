@@ -1,4 +1,5 @@
 <?php
+
 require_once 'settings.php';
 
 // User information
@@ -27,7 +28,7 @@ switch ($current_uri[0]) {
             if (!$user->isSignedIn()) {
                 header('Location: /signin');
             }
-            
+
             $workout->create();
         }
 
@@ -83,7 +84,7 @@ switch ($current_uri[0]) {
         if ($user->isSignedIn()) {
             header('Location: /dashboard');
         }
-        
+
         require_once $view_path.'register.php';
         break;
 
