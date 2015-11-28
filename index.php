@@ -20,7 +20,11 @@ switch ($current_uri[0]) {
             header('Location: /signin');
         }
 
-        require_once $view_path.'manager/dashboard.php';
+        $head_title = 'Dashboard';
+
+        $results = $workout->show();
+
+        include_once $view_path.'manager/dashboard.php';
         break;
 
     case 'dashboard/create':
@@ -33,7 +37,6 @@ switch ($current_uri[0]) {
         }
 
         header('Location: /dashboard');
-
         break;
 
     case 'dashboard/save':
@@ -53,7 +56,7 @@ switch ($current_uri[0]) {
             header('Location: /signin');
         }
 
-        require_once $view_path.'manager/calendar.php';
+        include_once $view_path.'manager/calendar.php';
         break;
 
     case 'information':
@@ -61,7 +64,7 @@ switch ($current_uri[0]) {
             header('Location: /signin');
         }
 
-        require_once $view_path.'manager/information.php';
+        include_once $view_path.'manager/information.php';
         break;
 
     case 'exercise':
@@ -69,7 +72,7 @@ switch ($current_uri[0]) {
             header('Location: /signin');
         }
 
-        require_once $view_path.'manager/exercise.php';
+        include_once $view_path.'manager/exercise.php';
         break;
 
     case 'signin':
@@ -77,7 +80,7 @@ switch ($current_uri[0]) {
             header('Location: /dashboard');
         }
 
-        require_once $view_path.'signin.php';
+        include_once $view_path.'signin.php';
         break;
 
     case 'register':
@@ -85,7 +88,7 @@ switch ($current_uri[0]) {
             header('Location: /dashboard');
         }
 
-        require_once $view_path.'register.php';
+        include_once $view_path.'register.php';
         break;
 
     case 'signout':
@@ -97,6 +100,6 @@ switch ($current_uri[0]) {
         break;
 
     default:
-        require_once $view_path.'home.php';
+        include_once $view_path.'home.php';
         break;
 }
