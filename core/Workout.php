@@ -96,8 +96,7 @@ class Workout
             return false;
         }
 
-        return true;  
-        echo "'zdd'";  
+        return true;    
     }
 
     /**

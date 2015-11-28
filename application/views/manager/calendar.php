@@ -38,9 +38,11 @@ $daysInWeek = 1;
 <?php include_once('_header.php'); ?>
 		
 	<div id="content">
-		<div class="padding">
+		<div class="page-title">
 			<h2>Calendar</h2>
-			
+		</div>
+		
+		<div class="padding">
 			<div class="date center"><?php echo $month_name.' '.$year; ?></div>
 			
 			<table id="calendar">

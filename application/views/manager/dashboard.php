@@ -6,7 +6,7 @@ if ($workout->exists < 1) {
 ?>
             <form method="post" action="/dashboard/create">
                 <div style="text-align: center; padding-top: 72px;" class="padding">
-                    <p>You don't have workout for today.</p>
+                    <p>You don't have a workout for today.</p>
                     <button class="block-button" type="submit">Create New Workout</button>
                 </div>
             </form>
@@ -15,12 +15,21 @@ if ($workout->exists < 1) {
 else {
 ?>
             <form method="post" action="/dashboard/save">
-                <div class="padding">
+                <div class="page-title">
                     <h2>Workout A</h2>
+                </div>
 
-                    <span class="updated_on"><?php echo ($results['updated_at'] != '0000-00-00 00:00:00') ? 'Workout completed on '.$results['updated_at'] : ''; ?></span>
-                    <div class="date"><strong>Todays date:</strong> <?php echo date('d M,Y'); ?></div>
-                    
+                <div class="date">
+                    <?php if ($results['updated_at'] != '0000-00-00 00:00:00') { ?>
+                        <span class="text"><strong>Workout completed on</strong> <?php echo $results['updated_at']; ?></span>
+                    <?php 
+                    } else { 
+                    ?>  
+                        <span class="text"><strong>Today is</strong> <?php echo date('d M,Y'); ?></span>
+                    <?php } ?>
+                </div>
+
+                <div class="padding">
                     <?php 
                     // Loop through excercises for this plan
                     foreach($results['excercises'] as $exercise) { 
@@ -32,7 +41,7 @@ else {
                     ?>
 
                     <div class="exercise">
-                        <div>
+                        <div class="title">
                             <div class="right">
                                 Weight: <a class="weight" title="change weight" href="#"><?php echo $current_weight; ?> KGS</a>
                                 <input type="hidden" class="currentWeight" name="currentWeight[<?php echo $exercise['user_workout_id']; ?>][]" value="<?php echo $current_weight; ?>">
