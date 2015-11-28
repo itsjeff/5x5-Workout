@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title><?php echo $head_title; ?> | 5x5 Workout Manager</title>
+	<title><?php echo $head_title; ?> | Workout Manager</title>
 
 	<link rel="stylesheet" href="/assets/css/manager.css">
 	
@@ -21,7 +21,7 @@
 				</ul>
 			</div>
 			
-			<h1><a href="index.php">5x5 Workout Manager</a></h1>
+			<h1><a href="index.php">Workout Manager</a></h1>
         </div>
     </header>
 	

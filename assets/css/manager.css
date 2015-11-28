@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -195,7 +196,7 @@ p {
     font-size: .85em;
 }
     
-.exercise {
+.excercise {
     background-color: #fff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -214,35 +215,43 @@ p {
     user-select: none;
     }
     
-.exercise a {
+.excercise a {
     color: #1963bf;
     text-decoration: none;
     }
     
-.exercise a:hover {
+.excercise a:hover {
     color: #222;
     }
     
-.exercise.end {
+.excercise.end {
     margin: 0;
     }
     
-.exercise .title {
+.excercise .title {
     padding: .8em 1em;
     margin: 0;
     border-bottom: 1px solid #efefef;
     }
+
+.excercise .title .excercise-name {
+    font-weight: 600;
+}
+
+.excercise .title .weight {
+    font-weight: 600;
+}
     
-.exercise .title .right {
+.excercise .title .right {
     float: right;
     font-weight: normal;
     }
     
-.exercise .sets {
+.excercise .sets {
     padding: 1em;
     }
     
-.exercise .sets span {
+.excercise .sets span {
     background: #1963BF;
     border-radius: 50%;
     color: #fff;
@@ -262,7 +271,7 @@ p {
     text-decoration: none;
     }
     
-.exercise .sets span:hover {
+.excercise .sets span:hover {
     background: #4086DC;
     }
 
@@ -291,37 +300,111 @@ p {
     background-color: #666;
     }
     
-.panelBox {
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-    padding: 18px;
-    width: 400px;
-    position: absolute;
-    right: 0;
+
+/**
+ * Panel weight box
+ */
+.panel-box-wrapper {
     display: none;
+}
+
+.panel-box-overlay {
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;  
+    width: 100%;
+    height: 100%; 
     z-index: 2;
 }
 
-.panelBox input {
-    border: 1px solid #ccc;
+.panel-box {
+    background-color: #fff;
     border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    font-size: 16px;
-    padding: 5px 10px;
-    }
+    box-shadow: 0 1px 8px rgba(0,0,0,.3);
+    padding: 18px;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+}
+
+.panel-box h4 {
+    margin-top: 0;
+}
+
+.panel-box label {
+    display: block;
+    font-weight: 600;
+    font-size: .85em;
+    margin-bottom: .5em;
+}
+
+.panel-box .text {
+    font-size: .85em;
+    margin-bottom: 1em;
+}
+
+.panel-box .weight-input {
+    display: table;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.panel-box .weight-input input {
+    border: 1px solid #999;
+    border-radius: 3px;
+    font-size: 1em;
+    padding: 0 1em;
+    height: 45px;
+}
+
+.panel-box .weight-input input {
+    width: 70%;
+}
+
+.panel-box .weight-input input:first-child {
+    border-top-right-radius: 0;  
+    border-bottom-right-radius: 0; 
+}
+
+.panel-box .weight-input button {
+    width: 15%;
+    height: 45px;
+    cursor: pointer;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #f7f7f7;
+}
+
+.panel-box .weight-input button:last-child {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.panel-box .weight-input button:not(:last-child):not(:first-child) {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;  
+    border-top-right-radius: 0;  
+    border-bottom-right-radius: 0;  
+} 
     
-.panelBox .submit {
-    background-color: #666;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+.panel-box .update-wrapper .update {
+    background-color: #383838;
+    border-radius: 3px;
     color: #fff;
-    padding: 5px 8px;
+    cursor: pointer;
+    padding: 1em;
+    width: 100%;
+    border: 0;
+    font-size: .85em;
+    font-weight: 600;
     }
     
-.panelBox .submit:hover {
+.panel-box .submit:hover {
     color: #fff;
     }
     
@@ -329,15 +412,24 @@ p {
 /*
  * Calendar
  */
-#calendar {
-    background-color: #efefef;
+.calendar-wrapper {
     box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.calendar-month {
+    padding: 1em;
+    background: #fff;
+    text-align: center;
+}
+
+.calendar {
+    background-color: #efefef;
     border-spacing: 0px;
     margin-bottom: 54px;
     width: 100%;
     }   
     
-#calendar th {
+.calendar th {
     background-color: #5789cd;
     color: #fff;
     font-size: 14px;
@@ -346,7 +438,7 @@ p {
     width: 14.2%
     }
     
-#calendar td {  
+.calendar td {  
     border-bottom: 1px solid #efefef;
     text-align: center;
     padding: 40px 0;
@@ -365,8 +457,8 @@ p {
     color: #fff;
     font-weight: bold;
     }
-@media all and (max-width: 900px) 
-{
+
+@media all and (max-width: 900px) {
     /*
      * Content
      */
@@ -412,8 +504,7 @@ p {
      
 }
 
-@media all and (max-width: 600px) 
-{
+@media all and (max-width: 600px) {
     /*
      * Nav
      */
@@ -437,7 +528,13 @@ p {
         width: 45px;
         text-indent: -9999px;
         }
-    
+
+    /**
+     * Panel
+     */
+    .panel-box {
+        width: 300px;
+    }
 
     /*
      * User menu
@@ -480,9 +577,26 @@ p {
         width: 100%;
         }
         
-        
-#calendar td {  
-    font-size: 14px;
-    padding: 15px 0;
+    #calendar td {  
+        font-size: 14px;
+        padding: 15px 0;
+        }
+
+    /**
+     * Excercise
+     */
+    .excercise .sets span {
+        margin-right: 5px;
+    }
+
+    .excercise .sets span:last-child {
+        margin: 0;
+    }
+
+    /**
+     * Calendar
+     */
+    .calendar td {
+        padding: 10px 0;
     }
 }

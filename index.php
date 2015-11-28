@@ -51,6 +51,26 @@ switch ($current_uri[0]) {
         header('Location: /dashboard');
         break;
 
+    case 'user/workout/excercise':
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !$user->isSignedIn()) {
+            header('Content-Type: application/json');
+            echo json_encode(['response' => 'error', 'msg' => 'Unauthorized action']);
+        } 
+        else {
+            $user_workout_id = (isset($_POST['workout_id'])) ? (int) $_POST['workout_id'] : 0;
+
+            $workout_data = $workout->excercise($user_workout_id);
+
+            header('Content-Type: application/json');
+
+            if ($workout_data) {
+                echo json_encode(['response' => 'success', 'msg' => $workout_data]);
+            } else {
+                echo json_encode(['response' => 'error', 'msg' => 'Excercise does not exist']);
+            }
+        }
+        break;
+
     case 'calendar':
         if (!$user->isSignedIn()) {
             header('Location: /signin');

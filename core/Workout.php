@@ -135,4 +135,42 @@ class Workout
             $stmt->execute();
         }
     }
+
+    /**
+     * Get excercise data
+     * 
+     * @return array  return excercise data from workout as an array
+     */
+    public function excercise($excercise_id = 0)
+    {
+        // User
+        $user_id = $this->user->userId;
+
+        if ($excercise_id != 0) {
+            $stmt = $this->db->prepare("SELECT exercises.exercise_name, uw.user_workout_id, workout_plans.start_sets_reps, workout_plans.start_weight, uw.sets_reps, uw.set_weight 
+                FROM user_workout AS uw
+                LEFT JOIN workout_plans ON workout_plans.plan_id = uw.workout_plan_id 
+                LEFT JOIN exercises ON exercises.exercise_id = workout_plans.exercise_id
+                WHERE uw.user_id = ? AND uw.user_workout_id = ? LIMIT 1"); 
+
+                $stmt->bind_param('ii', $user_id, $excercise_id);
+                $stmt->execute();
+                $stmt->bind_result($exercise_name, $user_workout_id, $start_sets_reps, $start_weight, $sets_reps, $set_weight);
+                $stmt->fetch();
+
+            $results = [
+                'id'              => $excercise_id,
+                'exercise_name'   => $exercise_name,
+                'user_workout_id' => $user_workout_id,
+                'start_sets_reps' => $start_sets_reps,
+                'start_weight'    => $start_weight,
+                'sets_reps'       => $sets_reps,
+                'set_weight'      => $set_weight
+                ];
+
+            return $results;
+        } 
+
+        return false;
+    }
 }

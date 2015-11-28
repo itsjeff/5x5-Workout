@@ -43,58 +43,59 @@ $daysInWeek = 1;
 		</div>
 		
 		<div class="padding">
-			<div class="date center"><?php echo $month_name.' '.$year; ?></div>
-			
-			<table id="calendar">
-			<tr>
-				<th>M</th>
-				<th>T</th>
-				<th>W</th>
-				<th>T</th>
-				<th>F</th>
-				<th>S</th>
-				<th>S</th>
-			</tr>
-			
-			<tr>
-			
-			<?php 
-			// Start with empty days for the month,
-			// Before the first day of the month
-			for ($w = 0; $w < $firstDay-1; $w++) {
-				echo '<td>&nbsp;</td>';
+			<div class="calendar-wrapper">
+				<div class="calendar-month"><?php echo $month_name.' '.$year; ?></div>
+				<table class="calendar">
+				<tr>
+					<th>M</th>
+					<th>T</th>
+					<th>W</th>
+					<th>T</th>
+					<th>F</th>
+					<th>S</th>
+					<th>S</th>
+				</tr>
 				
-				$daysInWeek++;
-			}	
+				<tr>
+				
+				<?php 
+				// Start with empty days for the month,
+				// Before the first day of the month
+				for ($w = 0; $w < $firstDay-1; $w++) {
+					echo '<td>&nbsp;</td>';
+					
+					$daysInWeek++;
+				}	
 
-			// List days
-			for($day = 1; $day <= $daysInMonth; $day++) {	
-				if ($daysInWeek > 7) {
-					echo "</tr><tr>\n";
+				// List days
+				for($day = 1; $day <= $daysInMonth; $day++) {	
+					if ($daysInWeek > 7) {
+						echo "</tr><tr>\n";
+						
+						$daysInWeek = 1;
+					}
 					
-					$daysInWeek = 1;
+					if (array_key_exists($day, $eventLog)) {
+						$padDay = str_pad($day, 2, '0', STR_PAD_LEFT);
+						$padMonth = str_pad($month_numeric, 2, '0', STR_PAD_LEFT);
+						
+						$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
+						
+						echo "<td class=\"calendar-day active\"><a href=\"/dashboard?date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
+					} else {
+						echo "<td class=\"calendar-day\">".$day."</td>\n";
+					}
+					
+					$daysInWeek++;
 				}
 				
-				if (array_key_exists($day, $eventLog)) {
-					$padDay = str_pad($day, 2, '0', STR_PAD_LEFT);
-					$padMonth = str_pad($month_numeric, 2, '0', STR_PAD_LEFT);
-					
-					$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
-					
-					echo "<td class=\"calendar-day active\"><a href=\"/dashboard?date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
-				} else {
-					echo "<td class=\"calendar-day\">".$day."</td>\n";
-				}
-				
-				$daysInWeek++;
-			}
-			
-			for ($w = 0; $w <= 7 - $daysInWeek; $w++) {
-				echo "<td>&nbsp;</td>\n";
-			}	
-			?>
-			</tr>
-			</table>	
+				for ($w = 0; $w <= 7 - $daysInWeek; $w++) {
+					echo "<td>&nbsp;</td>\n";
+				}	
+				?>
+				</tr>
+				</table>
+			</div>
 			
 		</div>
 	</div>   
