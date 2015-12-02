@@ -4,7 +4,7 @@
 <?php 
 if ($workout->exists < 1) {
 ?>
-            <form method="post" action="/dashboard/create">
+            <form method="post" action="<?php echo $request->url('dashboard/create'); ?>">
                 <div style="text-align: center; padding-top: 72px;" class="padding">
                     <p>You don't have a workout for today.</p>
                     <button class="block-button" type="submit">Create New Workout</button>
@@ -14,23 +14,23 @@ if ($workout->exists < 1) {
 }
 else {
 ?>
-            <form method="post" action="/dashboard/save">
+            <form method="post" action="<?php echo $request->url('dashboard/save'); ?>">
                 <div class="page-title">
-                    <h2>Workout A</h2>
-                </div>
+                    <h2>Workout name</h2>
 
-                <div class="date">
-                    <?php if ($results['updated_at'] != '0000-00-00 00:00:00') { ?>
-                        <?php
-                        $date = new DateTime($results['updated_at']);
-                        ?>
-                        <span class="text"><strong>Workout completed on</strong> <?php echo $date->format('d F'); ?></span>
-                    <?php 
-                    } else { 
-                    ?>  
-                        <span class="text"><strong>Today is</strong> <?php echo date('d F'); ?></span>
-                    <?php } ?>
-                </div>
+                    <div class="date">
+                        <?php if ($results['updated_at'] != '0000-00-00 00:00:00') { ?>
+                            <?php
+                            $date = new DateTime($results['updated_at']);
+                            ?>
+                            <span class="text"><strong>Workout completed on</strong> <?php echo $date->format('d F'); ?></span>
+                        <?php 
+                        } else { 
+                        ?>  
+                            <span class="text"><strong>Today is</strong> <?php echo date('d F'); ?></span>
+                        <?php } ?>
+                    </div>
+                </div> <!-- end page title -->
 
                 <div class="padding">
                     <?php 

@@ -21,37 +21,43 @@ if ($exercise_id) {
 ?>
 
 <?php include_once('_header.php'); ?>
-		
-		<div id="content">
-			<div class="padding">
 			
-				<?php if ($exercise_id && $exists > 0) { ?>
-				
+		<?php if ($exercise_id && $exists > 0) { ?>
+			
+		<div id="content">
+			<div class="page-title">
 				<h2><?php echo $exercise_name; ?></h2>
-				<h3 style="font-weight: normal;"><a href="/information" title="Back to Information">Workout Information</a></h3>
-				
+			</div>
+
+			<div class="padding">
+
 				<h4>Description:</h4>
 				
 				<div>
 					<?php echo $exercise_description; ?>
 				</div>
-				
-				<?php } else { ?>
-				
+			
+		<?php } else { ?>
+
+		<div id="content">
+			<div class="page-title">
 				<h2>Workout Information</h2>
-				
+			</div>
+		
+			<div class="padding">
+			
 				<h4>Exercise workourts</h4>
 				<ol>
 					<?php while($row = $results->fetch_object()) { ?>
-					<li><a href="/information?exercise_id=<?php echo $row->exercise_id; ?>" title="<?php echo $row->exercise_name; ?>"><?php echo $row->exercise_name; ?></a></li>
+					<li><a href="<?php echo $request->url('information?exercise_id='.$row->exercise_id); ?>" title="<?php echo $row->exercise_name; ?>"><?php echo $row->exercise_name; ?></a></li>
 					<?php } ?>
 				</ol>
 					
 				<h4>Note:</h4>
 				
 				<p>Remember to always warm up before exercise, everyone.</p>
-				
-				<?php } ?>
+			
+		<?php } ?>
 				
 			</div>
 		</div>   

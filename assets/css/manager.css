@@ -6,6 +6,7 @@
 
 body {
     font-family: "Open sans", sans-serif;
+    background: #e5eaee;
 }
 
 header {
@@ -33,21 +34,30 @@ footer {
     text-align: center;
     }
     
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
 h4 {
-    margin: 18px 0;
-    }
+    margin-bottom: 1em;
+}
     
 ol {
     margin: 0 0 0 20px;
     }
     
 ol li {
-    margin-bottom: 10px;
+    margin-bottom: 1em;
+    margin-left: 1em;
     }
     
 p {
     margin-bottom: 10px;
     }
+
+a {
+    color: #000;
+}
     
 .center {
     text-align: center;
@@ -164,7 +174,6 @@ p {
     
 #content {
     margin: 0 0 0 250px;
-    background: #e5eaee;
     }
     
 #content .padding {
@@ -179,6 +188,7 @@ p {
 
 .page-title {
     background: #fff;
+    border-bottom: 1px solid #ddd;
     padding: 1em;
     text-transform: uppercase;
 }
@@ -187,9 +197,7 @@ p {
  * Workout
  */
 .date {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 0 1em 1em;
+    padding-top: 1em;
 }
 
 .date .text {
@@ -240,6 +248,12 @@ p {
 
 .excercise .title .weight {
     font-weight: 600;
+}
+
+.excercise .title .weight:focus, .excercise .title .weight:active:focus {
+    background: transparent;
+    outline: none;
+    border: 0;
 }
     
 .excercise .title .right {
@@ -358,6 +372,8 @@ p {
     font-size: 1em;
     padding: 0 1em;
     height: 45px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .panel-box .weight-input input {
@@ -376,6 +392,8 @@ p {
     border: 1px solid #999;
     border-radius: 3px;
     background: #f7f7f7;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .panel-box .weight-input button:last-child {
@@ -439,7 +457,6 @@ p {
     }
     
 .calendar td {  
-    border-bottom: 1px solid #efefef;
     text-align: center;
     padding: 40px 0;
     width: 14.2%

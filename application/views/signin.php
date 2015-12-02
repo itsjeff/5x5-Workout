@@ -38,7 +38,7 @@ if (isset($_POST['signin'])) {
 	if (count($errors) < 1) {
 		$_SESSION['userId'] = $userId;
 		
-		header('Location: /dashboard');
+		header('Location: '.$request->url('dashboard'));
 	}
 }
 ?>

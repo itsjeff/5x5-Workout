@@ -9,12 +9,8 @@ if ($user->isSignedIn()) {
     $myEmail = $user->email();
 }
 
-// Get uri for pretty urls
-$end_uri = (!isset($_SERVER['REQUEST_URI'])) ?: ltrim(htmlspecialchars($_SERVER['REQUEST_URI']), '/');
-$current_uri = explode('?', $end_uri);
-
 // Pages
-switch ($current_uri[0]) {
+switch ($request->getBaseUri()) {
     case 'dashboard':
         if (!$user->isSignedIn()) {
             header('Location: /signin');

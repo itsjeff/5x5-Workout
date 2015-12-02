@@ -54,7 +54,7 @@ if (isset($_POST['register'])) {
 		// Log in user straight away
 		$_SESSION['userId'] = $stmt->insert_id;
 		
-		header('Location: /dashboard');
+		header('Location: '.$request->url('dashboard'));
 	}
 }
 ?>

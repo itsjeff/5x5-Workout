@@ -5,10 +5,10 @@
 
 	<title><?php echo $head_title; ?> | Workout Manager</title>
 
-	<link rel="stylesheet" href="/assets/css/manager.css">
+	<link rel="stylesheet" href="<?php echo $request->url('assets/css/manager.css'); ?>">
 	
-	<script src="/assets/js/jquery.js"></script>
-	<script src="/assets/js/5x5.js"></script>
+	<script src="<?php echo $request->url('assets/js/jquery.js'); ?>"></script>
+	<script src="<?php echo $request->url('assets/js/5x5.js'); ?>"></script>
 </head>
 <body>
 	<header>
@@ -16,8 +16,8 @@
 			<div class="userSign">
 				<a id="drop" href="#">Menu</a>
 				<ul>
-					<li><a href="">Welcome, <strong><?php echo $myEmail; ?></strong></a></li>
-					<li><a href="/signout">Sign out</a></li>
+					<li><a href="<?php echo $request->url(); ?>">Welcome, <strong><?php echo $myEmail; ?></strong></a></li>
+					<li><a href="<?php echo $request->url('signout'); ?>">Sign out</a></li>
 				</ul>
 			</div>
 			
@@ -30,8 +30,8 @@
 	<div class="row">	
 		<div id="nav">
 			<ul>
-				<li><a class="ico-workout" href="/dashboard" title="Start Workout">Start Workout</a></li>
-				<li><a class="ico-calendar" href="/calendar" title="Calendar">Calendar History</a></li>
-				<li><a class="ico-workout-info" href="/information" title="Information">Workout Information</a></li>
+				<li><a class="ico-workout" href="<?php echo $request->url('dashboard'); ?>" title="Start Workout">Start Workout</a></li>
+				<li><a class="ico-calendar" href="<?php echo $request->url('calendar'); ?>" title="Calendar">Calendar History</a></li>
+				<li><a class="ico-workout-info" href="<?php echo $request->url('information'); ?>" title="Information">Workout Information</a></li>
 			</ul>
 		</div>
