@@ -440,6 +440,26 @@ a {
     text-align: center;
 }
 
+.calendar-month .next {
+    float: right;
+}
+
+.calendar-month .prev {
+    float: left;
+}
+
+.calendar-month .next,
+.calendar-month .prev {
+    display: inline-block;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    border-radius: 3px;
+    padding: .2em .6em;
+    text-decoration: none;
+    position: relative;
+    top: -3px;
+}
+
 .calendar {
     background-color: #efefef;
     border-spacing: 0px;

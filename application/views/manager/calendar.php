@@ -15,17 +15,29 @@ $eventLog = array();
 
 // Store event in array to call from looped month later
 while ($calendar_stmt->fetch()) {
-	$timestamp = strtotime($created_on);
-	$day = date('j', $timestamp);
-	$eventLog[$day] = true;
+	$timestamp   = strtotime($created_on);
+	$event_year  = date('Y', $timestamp);
+	$event_month = date('m', $timestamp);
+	$event_day   = date('j', $timestamp);
+
+	$eventLog[$event_year.'-'.$event_month.'-'.$event_day] = true;
 }
 
 
 // Calendar
 $date = new DateTime();
 
+$set_month = (isset($_GET['month'])) ? (int) trim($_GET['month']) : '';
+
+if (!empty($set_month)) {
+	$date->setDate(2015, ($set_month+1), 0);
+}
+
 $month_numeric = $date->format('n');
 $month_name    = $date->format('F');
+
+$date_prev = ($month_numeric == 1) ? 12 : ($month_numeric-1);
+$date_next = ($month_numeric == 12) ? 1 : ($month_numeric+1);
 
 $year  = $date->format('Y');
 
@@ -44,7 +56,11 @@ $daysInWeek = 1;
 		
 		<div class="padding">
 			<div class="calendar-wrapper">
-				<div class="calendar-month"><?php echo $month_name.' '.$year; ?></div>
+				<div class="calendar-month">
+					<a href="?month=<?php echo $date_next; ?>" class="next">next</a>
+					<a href="?month=<?php echo $date_prev; ?>" class="prev">prev</a>
+					<?php echo $month_name.' '.$year; ?>
+				</div>
 				<table class="calendar">
 				<tr>
 					<th>M</th>
@@ -74,23 +90,25 @@ $daysInWeek = 1;
 						
 						$daysInWeek = 1;
 					}
+
+					$match_date = $year.'-'.$month_numeric.'-'.$day;
 					
-					if (array_key_exists($day, $eventLog)) {
+					if (array_key_exists($match_date, $eventLog)) {
 						$padDay = str_pad($day, 2, '0', STR_PAD_LEFT);
 						$padMonth = str_pad($month_numeric, 2, '0', STR_PAD_LEFT);
 						
 						$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
 						
-						echo "<td class=\"calendar-day active\"><a href=\"/dashboard?date=".$workoutDate."\" title=\"View workout for this day\">".$day."</a></td>\n";
+						echo '<td class="calendar-day active"><a href="'.$request->url('dashboard?date='.$workoutDate).'" title="View workout for this day">'.$day.'</a></td>';
 					} else {
-						echo "<td class=\"calendar-day\">".$day."</td>\n";
+						echo '<td class="calendar-day">'.$day.'</td>';
 					}
 					
 					$daysInWeek++;
 				}
 				
 				for ($w = 0; $w <= 7 - $daysInWeek; $w++) {
-					echo "<td>&nbsp;</td>\n";
+					echo '<td>&nbsp;</td>';
 				}	
 				?>
 				</tr>
