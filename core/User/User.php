@@ -60,4 +60,19 @@ class User
 
 		return $myEmail;
 	}
+
+	/**
+	 * 
+	 */
+	public function workout() {
+		$user_stmt = $this->db->prepare("SELECT selected_workout_id FROM users_profile WHERE user_id = ?");
+
+		$user_stmt->bind_param('i', $this->userId);
+		$user_stmt->execute();
+		$user_stmt->bind_result($selected_workout_id);
+		$user_stmt->store_result();
+		$user_stmt->fetch();
+
+		return $selected_workout_id;
+	}
 }

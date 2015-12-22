@@ -21,7 +21,7 @@
 				</ul>
 			</div>
 			
-			<h1><a href="index.php">Workout Manager</a></h1>
+			<h1><a href="index.php">WM - <?php echo $head_title; ?></a></h1>
         </div>
     </header>
 	
@@ -31,6 +31,7 @@
 		<div id="nav">
 			<ul>
 				<li><a class="ico-workout" href="<?php echo $request->url('dashboard'); ?>" title="Start Workout">Start Workout</a></li>
+				<li><a class="ico-workouts" href="<?php echo $request->url('workouts'); ?>" title="Choose or create a workout">Workouts</a></li>
 				<li><a class="ico-calendar" href="<?php echo $request->url('calendar'); ?>" title="Calendar">Calendar History</a></li>
 				<li><a class="ico-workout-info" href="<?php echo $request->url('information'); ?>" title="Information">Workout Information</a></li>
 			</ul>

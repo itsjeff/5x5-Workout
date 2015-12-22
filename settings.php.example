@@ -7,15 +7,20 @@ $database = '5x5';
 
 $view_path = 'application/views/';
 
+
 // Timezone
 date_default_timezone_set('Australia/Sydney');
 
-//Start session
 session_start();
+
 
 // Load a simple autoloader
 require_once 'core/Loader.php';
 
 $db = new mysqli($host, $user, $pass, $database);
-$user = new core\User($db);
-$workout = new core\Workout($db, $user);
+$user = new core\User\User($db);
+$workout = new core\Workout\Workout($db, $user);
+$user_workout = new core\UserWorkout\UserWorkout($db, $user);
+$request = new core\Request\Request(realpath(__DIR__));
+
+require_once 'core/Foundation/helpers.php';

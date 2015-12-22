@@ -13,12 +13,12 @@ if ($user->isSignedIn()) {
 switch ($request->getBaseUri()) {
     case 'dashboard':
         if (!$user->isSignedIn()) {
-            header('Location: /signin');
+            header('Location: '.$request->url('signin'));
         }
 
         $head_title = 'Dashboard';
 
-        $results = $workout->show();
+        $results = $user_workout->show();
 
         include_once $view_path.'manager/dashboard.php';
         break;
@@ -26,25 +26,25 @@ switch ($request->getBaseUri()) {
     case 'dashboard/create':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user->isSignedIn()) {
-                header('Location: /signin');
+                header('Location: '.$request->url('signin'));
             }
 
-            $workout->create();
+            $user_workout->create();
         }
 
-        header('Location: /dashboard');
+        header('Location: '.$request->url('dashboard'));
         break;
 
     case 'dashboard/save':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user->isSignedIn()) {
-                header('Location: /signin');
+                header('Location: '.$request->url('signin'));
             }
 
-            $workout->update();
+            $user_workout->update();
         }
 
-        header('Location: /dashboard');
+        header('Location: '.$request->url('dashboard'));
         break;
 
     case 'user/workout/excercise':
@@ -55,7 +55,7 @@ switch ($request->getBaseUri()) {
         else {
             $user_workout_id = (isset($_POST['workout_id'])) ? (int) $_POST['workout_id'] : 0;
 
-            $workout_data = $workout->excercise($user_workout_id);
+            $workout_data = $user_workout->excercise($user_workout_id);
 
             header('Content-Type: application/json');
 
@@ -67,9 +67,20 @@ switch ($request->getBaseUri()) {
         }
         break;
 
+    case 'workouts':
+        if (!$user->isSignedIn()) {
+            header('Location: '.$request->url('signin'));
+        }
+
+        $head_title = 'Workouts';
+        $workouts = $workout->show();
+
+        include_once $view_path.'manager/workouts.php';
+        break;
+
     case 'calendar':
         if (!$user->isSignedIn()) {
-            header('Location: /signin');
+            header('Location: '.$request->url('signin'));
         }
 
         include_once $view_path.'manager/calendar.php';
@@ -77,7 +88,7 @@ switch ($request->getBaseUri()) {
 
     case 'information':
         if (!$user->isSignedIn()) {
-            header('Location: /signin');
+            header('Location: '.$request->url('signin'));
         }
 
         include_once $view_path.'manager/information.php';
@@ -85,7 +96,7 @@ switch ($request->getBaseUri()) {
 
     case 'exercise':
         if (!$user->isSignedIn()) {
-            header('Location: /signin');
+            header('Location: '.$request->url('signin'));
         }
 
         include_once $view_path.'manager/exercise.php';
@@ -93,7 +104,7 @@ switch ($request->getBaseUri()) {
 
     case 'signin':
         if ($user->isSignedIn()) {
-            header('Location: /dashboard');
+            header('Location: '.$request->url('dashboard'));
         }
 
         include_once $view_path.'signin.php';
@@ -101,7 +112,7 @@ switch ($request->getBaseUri()) {
 
     case 'register':
         if ($user->isSignedIn()) {
-            header('Location: /dashboard');
+            header('Location: '.$request->url('dashboard'));
         }
 
         include_once $view_path.'register.php';
@@ -112,7 +123,7 @@ switch ($request->getBaseUri()) {
             $user->signOut();
         }
 
-        header('Location: /signin');
+        header('Location: '.$request->url('signin'));
         break;
 
     default:

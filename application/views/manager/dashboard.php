@@ -2,12 +2,12 @@
 
         <div id="content">
 <?php 
-if ($workout->exists < 1) {
+if ($user_workout->exists < 1) {
 ?>
             <form method="post" action="<?php echo $request->url('dashboard/create'); ?>">
                 <div style="text-align: center; padding-top: 72px;" class="padding">
                     <p>You don't have a workout for today.</p>
-                    <button class="block-button" type="submit">Create New Workout</button>
+                    <button class="block-button" type="submit">Start New Workout</button>
                 </div>
             </form>
 <?php
@@ -15,8 +15,10 @@ if ($workout->exists < 1) {
 else {
 ?>
             <form method="post" action="<?php echo $request->url('dashboard/save'); ?>">
+                <input type="hidden" name="user_workout_id" value="<?php echo $results['user_workout_id']; ?>">
+                
                 <div class="page-title">
-                    <h2>Workout name</h2>
+                    <h2><?php echo $results['workout_name']; ?> (<?php echo $results['cycle_name']; ?>)</h2>
 
                     <div class="date">
                         <?php if ($results['updated_at'] != '0000-00-00 00:00:00') { ?>
@@ -35,34 +37,34 @@ else {
                 <div class="padding">
                     <?php 
                     // Loop through excercises for this plan
-                    foreach($results['excercises'] as $exercise) { 
-                        $start_sets_reps   = explode(', ', $exercise['start_sets_reps']);
-                        $current_sets_reps = ($exercise['sets_reps'] != '') ? explode(', ', $exercise['sets_reps']) : array();
-                        $current_weight    = ($exercise['set_weight'] == 00.00) ? $exercise['start_weight'] : $exercise['set_weight'];
+                    foreach($results['excercises'] as $excercise) { 
+                        $start_sets_reps   = explode(', ', $excercise['start_sets_reps']);
+                        $current_sets_reps = ($excercise['sets_reps'] != '') ? explode(', ', $excercise['sets_reps']) : array();
+                        $current_weight    = ($excercise['set_weight'] == 00.00) ? $excercise['start_weight'] : $excercise['set_weight'];
                         
                         $loop_sets  = (!empty($current_sets_reps)) ? $current_sets_reps : $start_sets_reps;
                     ?>
 
-                        <div class="excercise" id="excercise_<?php echo $exercise['user_workout_id']; ?>" data-workout-id="<?php echo $exercise['user_workout_id']; ?>">
+                        <div class="excercise" id="excercise_<?php echo $excercise['workout_plan_id']; ?>" data-workout-id="<?php echo $excercise['workout_plan_id']; ?>">
                             <div class="title">
                                 <div class="right">
-                                    Weight: 
+                                    <span class="text">Weight: </span>
                                     <a class="weight" title="Change weight" href="#">
                                         <span><?php echo $current_weight; ?></span> KGS
                                     </a>
-                                    <input type="hidden" class="weight-input" name="currentWeight[<?php echo $exercise['user_workout_id']; ?>][]" value="<?php echo $current_weight; ?>">
+                                    <input type="hidden" class="weight-input" name="currentWeight[<?php echo $excercise['workout_plan_id']; ?>][]" value="<?php echo $current_weight; ?>">
                                 </div>
 
-                                <a class="excercise-name" href="#<?php echo $exercise['exercise_name']; ?>"><?php echo $exercise['exercise_name']; ?></a>
+                                <a class="excercise-name" href="#<?php echo $excercise['excercise_name']; ?>"><?php echo $excercise['excercise_name']; ?></a>
                             </div>
 
                             <div class="sets" id="squats">
                                 <?php for ($sets = 0; $sets < count($loop_sets); $sets++) { ?>
 
-                                <span name="<?php echo 'ex_'.$exercise['user_workout_id'].'_rep_'.$sets; ?>" data-rep="<?php echo $start_sets_reps[0]; ?>">
+                                <span name="<?php echo 'ex_'.$excercise['workout_plan_id'].'_rep_'.$sets; ?>" data-rep="<?php echo $start_sets_reps[0]; ?>">
                                     <?php echo (!empty($current_sets_reps)) ? $current_sets_reps[$sets] : '&nbsp'; ?>
                                 </span>
-                                <input type="hidden" id="<?php echo 'val_ex_'.$exercise['user_workout_id'].'_rep_'.$sets; ?>" name="exercise[<?php echo $exercise['user_workout_id']; ?>][]" value="<?php echo (!empty($current_sets_reps)) ? $current_sets_reps[$sets] : '0'; ?>">
+                                <input type="hidden" id="<?php echo 'val_ex_'.$excercise['workout_plan_id'].'_rep_'.$sets; ?>" name="excercise[<?php echo $excercise['workout_plan_id']; ?>][]" value="<?php echo (!empty($current_sets_reps)) ? $current_sets_reps[$sets] : '0'; ?>">
 
                                 <?php } ?>
                             </div>

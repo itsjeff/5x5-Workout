@@ -4,54 +4,57 @@ namespace core\Request;
 
 class Request
 {
-	public $base_path;
-	public $path_info = [];
+	public $baseUrl;
+
+	public $basePath;
+
+	public $pathInfo = [];
+
 
 	/**
-	 * [__construct description]
+	 * Constructor
 	 */
 	public function __construct($dir)
 	{
-		$this->base_path = $dir;
+		$this->basePath = $dir;
 
 		$this->preparePathInfo();
 	}
 
 	/**
-	 * [preparePathInfo description]
+	 * Prep all information about the url such as protocol, domain, path
 	 */
 	private function preparePathInfo()
 	{
 		$port   = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 'https://' : 'http://';
 		$domain = $_SERVER['HTTP_HOST'];
-		$base_path = $this->base_path;
+		$baseUrl = $this->getBaseUrl();
 
-		if ($pos = strpos($this->base_path, $domain)) {
-			$base_path = substr($base_path, ($pos + strlen($domain)));
-		} 
-		else {
-			$base_path = '';
-		}
-
-		$this->path_info = [
+		$this->pathInfo = [
 			'port' => $port,
 			'domain' => $domain,
-			'base_path' => ltrim($base_path, '/')
+			'base_path' => $baseUrl
 			];
 	}
 
 	/**
-	 * [getBaseUrl description]
+	 * Get base path
+	 * 
+	 * @return string Return base path leading up to file
 	 */
 	public function getBaseUrl()
 	{
-		$path_info = $this->path_info;
+		if ($this->baseUrl === null) {
+			$this->baseUrl = $this->prepareBaseUrl();	
+		}
 
-		return $path_info['port'].$path_info['domain'].$path_info['base_path'];
+		return $this->baseUrl;
 	}
 
 	/**
-	 * [getBaseUri description]
+	 * Get uri after base url
+	 * 
+	 * @return string Return uri after base url
 	 */
 	public function getBaseUri()
 	{
@@ -61,7 +64,7 @@ class Request
 			$uri = substr($uri, 0, $pos);
 		}
 
-		if ($pos = strlen($this->path_info['base_path'])) {
+		if ($pos = strlen($this->pathInfo['base_path'])) {
 			$uri = substr($uri, $pos);
 		}
 
@@ -69,12 +72,30 @@ class Request
 	}
 
 	/**
-	 * [url description]
+	 * Prepare base url up to file location
+	 * 
+	 * @return string Return prepared base url
 	 */
-	public function url($path = '')
+	public function prepareBaseUrl()
 	{
-		$path = '/'.ltrim($path);
+		$baseUrl = $_SERVER['PHP_SELF'];
+		$baseUrl = rtrim(dirname($baseUrl), '/'.DIRECTORY_SEPARATOR);
 
-		return $this->getBaseUrl().$path;
+		return $baseUrl;
+	}
+
+	/**
+	 * Return full url with specified path or file
+	 * 
+	 * @param  string $to Path or file name
+	 * @return [type]     Return full path
+	 */
+	public function url($to = '')
+	{
+		$pathInfo = $this->pathInfo;
+
+		$url = $pathInfo['port'].$pathInfo['domain'].$pathInfo['base_path'].'/';
+
+		return $url.$to;
 	}
 }

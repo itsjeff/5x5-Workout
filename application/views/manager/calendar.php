@@ -3,19 +3,19 @@
 $head_title = 'Calendar';
 
 // Get days use went to gym
-$userId = trim(htmlspecialchars($_SESSION['userId']));
+$user_id = trim(htmlspecialchars($_SESSION['userId']));
 
-$calendar_stmt = $db->prepare('SELECT created_on FROM user_workout WHERE user_id = ? GROUP BY created_on');
-$calendar_stmt->bind_param('i', $userId);
+$calendar_stmt = $db->prepare('SELECT created_at FROM user_workout WHERE user_id = ?');
+$calendar_stmt->bind_param('i', $user_id);
 $calendar_stmt->execute();
-$calendar_stmt->bind_result($created_on);
+$calendar_stmt->bind_result($created_at);
 $calendar_stmt->store_result();
 
 $eventLog = array();
 
 // Store event in array to call from looped month later
 while ($calendar_stmt->fetch()) {
-	$timestamp   = strtotime($created_on);
+	$timestamp   = strtotime($created_at);
 	$event_year  = date('Y', $timestamp);
 	$event_month = date('m', $timestamp);
 	$event_day   = date('j', $timestamp);
