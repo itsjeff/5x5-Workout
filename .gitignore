@@ -1,3 +1,5 @@
 Vagrantfile
 provision.sh
 settings.php
+assets/.sass-cache
+assets/config.rb

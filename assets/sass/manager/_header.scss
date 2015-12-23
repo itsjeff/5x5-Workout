@@ -1,0 +1,119 @@
+header {
+    background-color: #1963bf;
+    position: relative;
+    height: 50px;
+    padding: 0 18px;
+    z-index: 4;
+
+    h1 {
+        font-size: 16px;
+        line-height: 50px;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+// Menu
+.backNav {
+    background-color: #f7f7f7;
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    }
+    
+#drop {
+    background-size: 14px 13px;
+    display: none;
+    padding: 0px;
+    width: 30px;
+    }
+    
+#nav {
+    float: left;
+    width: 300px;
+    }
+    
+#nav ul, #nav ul li {
+    margin: 0;
+    }
+    
+#nav ul li a {
+    color: #666;
+    display: block;
+    font-weight: 600;
+    font-size: .9em;
+    padding: 18px 18px;
+    margin: 0;
+    text-decoration: none;
+    }
+
+#nav ul li .ico-workout  {
+    background: url('../images/ico-workout.png') 12px 50% no-repeat;
+    background-size: 20px 20px;
+    padding-left: 42px;
+    }
+    
+    
+#nav ul li .ico-workouts  {
+    background: url('../images/ico-workouts.png') 12px 50% no-repeat;
+    background-size: 20px 20px;
+    padding-left: 42px;
+    }
+    
+#nav ul li .ico-calendar  {
+    background: url('../images/ico-calendar.png') 12px 50% no-repeat;
+    background-size: 20px 20px;
+    padding-left: 42px;
+    }
+    
+#nav ul li .ico-workout-info {
+    background: url('../images/ico-workout-info.png') 12px 50% no-repeat;
+    background-size: 20px 20px;
+    padding-left: 42px;
+    }
+    
+#nav ul li a:hover {
+    background-color: #efefef;
+    }
+
+
+@media all and (max-width: 600px) {
+    /*
+     * Nav
+     */ 
+    #nav {   
+        ul li .ico-workout {
+            background: url('../images/ico-workout.png') 50% 50% no-repeat;
+            background-size: 25px 25px;
+            width: 45px;
+            text-indent: -9999px;
+        }
+
+        ul li .ico-workouts {
+            background: url('../images/ico-workouts.png') 50% 50% no-repeat;
+            background-size: 22px 22px;
+            width: 45px;
+            text-indent: -9999px;
+        }
+
+        ul li .ico-calendar {
+            background: url('../images/ico-calendar.png') 50% 50% no-repeat;
+            background-size: 25px 25px;
+            width: 45px;
+            text-indent: -9999px;
+        }
+            
+        ul li .ico-workout-info {
+            background: url('../images/ico-workout-info.png') 50% 50% no-repeat;
+            background-size: 25px 25px;
+            width: 45px;
+            text-indent: -9999px;
+        }
+    }
+}
