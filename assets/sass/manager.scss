@@ -593,6 +593,27 @@ a {
         padding: 15px 0;
         }
 
+    // Workout
+    .page-title {
+        &.user-workout-title {
+            display: block;
+
+            h2 {
+                display: none;
+            }
+
+            .date {
+                padding: 0;
+            }
+        }
+
+        &:after {
+            clear: both;
+            content: '';
+            display: table;
+        }
+    }
+
     /**
      * Excercise
      */

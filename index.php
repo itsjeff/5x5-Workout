@@ -24,7 +24,7 @@ switch ($request->getBaseUri()) {
             include_once $view_path.'manager/dashboard.php';
         }
         else {
-            $head_title = 'Dashboard';
+            $head_title = 'Workout';
 
             include_once $view_path.'manager/user_workout.php';
         }

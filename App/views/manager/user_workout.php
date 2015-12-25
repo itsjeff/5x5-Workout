@@ -4,9 +4,9 @@
         <form method="post" action="<?php echo $request->url('dashboard/save'); ?>">
             <input type="hidden" name="user_workout_id" value="<?php echo $results['user_workout_id']; ?>">
             
-            <div class="page-title">
+            <div class="page-title user-workout-title">
                 <div class="delete">
-                    <a href="<?php echo $request->url('dashboard/delete'); ?>" title="Delete workout" data-user-workout="<?php echo $results['user_workout_id']; ?>">(delete workout)</a>
+                    <a href="<?php echo $request->url('dashboard/delete'); ?>" title="Delete workout" data-user-workout="<?php echo $results['user_workout_id']; ?>">(delete)</a>
                 </div>
 
                 <h2><?php echo $results['workout_name']; ?> (<?php echo $results['cycle_name']; ?>)</h2>
@@ -16,11 +16,11 @@
                         <?php
                         $date = new DateTime($results['updated_at']);
                         ?>
-                        <span class="text"><strong>Workout completed on</strong> <?php echo $date->format('d F'); ?></span>
+                        <span class="text"><strong>Completed:</strong> <?php echo $date->format('d F'); ?></span>
                     <?php 
                     } else { 
                     ?>  
-                        <span class="text"><strong>Today is</strong> <?php echo date('d F'); ?></span>
+                        <span class="text"><?php echo date('d F'); ?></span>
                     <?php } ?>
                 </div>
             </div> <!-- end page title -->
