@@ -5,7 +5,7 @@ $head_title = 'Calendar';
 // Get days use went to gym
 $user_id = trim(htmlspecialchars($_SESSION['userId']));
 
-$calendar_stmt = $db->prepare('SELECT created_at FROM user_workout WHERE user_id = ?');
+$calendar_stmt = $db->prepare("SELECT created_at FROM user_workout WHERE user_id = ? AND deleted_at = '0000-00-00 00:00:00'");
 $calendar_stmt->bind_param('i', $user_id);
 $calendar_stmt->execute();
 $calendar_stmt->bind_result($created_at);

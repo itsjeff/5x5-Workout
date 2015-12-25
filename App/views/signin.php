@@ -78,7 +78,7 @@ if (isset($_POST['signin'])) {
 		 
 			<div class="row">
 				<input class="button" type="submit" name="signin" value="Sign In"> 
-				<a href="/register">Not a member? Register now.</a>
+				<a href="<?php echo $request->url('register'); ?>">Not a member? Register now.</a>
 			</div>
 			</form>
 			

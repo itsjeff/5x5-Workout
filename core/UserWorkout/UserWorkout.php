@@ -163,18 +163,22 @@ class UserWorkout
     /**
      * Soft delete user workout
      */
-    public function delete()
+    public function delete($id = 0)
     {
-        $user_workout_id = 0;
-
         $user_id = $this->user->userId;
 
         $date = date('Y-m-d H:i:s');
 
         // Update delete at
         $stmt = $this->db->prepare("UPDATE user_workout SET deleted_at = ? WHERE id = ? AND user_id = ? LIMIT 1");
-        $stmt->bind_param('sii', $date, $user_workout_id, $user_id);
+        $stmt->bind_param('sii', $date, $id, $user_id);
         $stmt->execute();   
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -227,7 +231,7 @@ class UserWorkout
         $recent_cycle = 0;
 
         // Get cycle
-        $stmt = $this->db->prepare("SELECT uw.workout_cycle_id FROM user_workout AS uw WHERE uw.user_id = ? ORDER BY uw.id DESC LIMIT 1");
+        $stmt = $this->db->prepare("SELECT uw.workout_cycle_id FROM user_workout AS uw WHERE uw.user_id = ? AND uw.deleted_at = '0000-00-00 00:00:00' ORDER BY uw.id DESC LIMIT 1");
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
         $stmt->bind_result($recent_cycle);

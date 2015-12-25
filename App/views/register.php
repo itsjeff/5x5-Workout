@@ -104,7 +104,7 @@ if (isset($_POST['register'])) {
 		 
 			<div class="row">
 				<input class="button" type="submit" name="register" value="Register"> 
-				<a href="/signin">Already a member? Sign In.</a>
+				<a href="<?php echo $request->url('signin'); ?>">Already a member? Sign In.</a>
 			</div>
 			</form>
 			

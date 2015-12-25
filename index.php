@@ -16,11 +16,18 @@ switch ($request->getBaseUri()) {
             header('Location: '.$request->url('signin'));
         }
 
-        $head_title = 'Dashboard';
-
         $results = $user_workout->show();
 
-        include_once $view_path.'manager/dashboard.php';
+        if ($user_workout->exists < 1) {
+            $head_title = 'Dashboard';
+
+            include_once $view_path.'manager/dashboard.php';
+        }
+        else {
+            $head_title = 'Dashboard';
+
+            include_once $view_path.'manager/user_workout.php';
+        }
         break;
 
     case 'dashboard/create':
@@ -47,17 +54,38 @@ switch ($request->getBaseUri()) {
         header('Location: '.$request->url('dashboard'));
         break;
 
-    case 'user/workout/excercise':
+    case 'dashboard/delete':
+        header('Content-Type: application/json');
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !$user->isSignedIn()) {
-            header('Content-Type: application/json');
+            echo json_encode(['response' => 'error', 'msg' => 'Unauthorized action']);
+        }
+        else {
+            $user_workout_id = (isset($_POST['user_workout_id']) ? (int) $_POST['user_workout_id'] : 0);
+
+            if ($user_workout_id > 0) {
+                if ($user_workout->delete($user_workout_id)) {
+                    echo json_encode(['response' => 'success', 'msg' => 'User Workout #'.$user_workout_id.' was removed.']);
+                } else {
+                    echo json_encode(['response' => 'error', 'msg' => 'Record did not exist, or user workout #'.$user_workout_id.' does not belong to user.']);
+                }
+            }
+            else {
+                echo json_encode(['response' => 'error', 'msg' => 'Please provide an Id']);    
+            }
+        }
+        break;
+
+    case 'user/workout/excercise':
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !$user->isSignedIn()) {
             echo json_encode(['response' => 'error', 'msg' => 'Unauthorized action']);
         } 
         else {
             $user_workout_id = (isset($_POST['workout_id'])) ? (int) $_POST['workout_id'] : 0;
 
             $workout_data = $user_workout->excercise($user_workout_id);
-
-            header('Content-Type: application/json');
 
             if ($workout_data) {
                 echo json_encode(['response' => 'success', 'msg' => $workout_data]);

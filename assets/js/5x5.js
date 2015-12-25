@@ -76,6 +76,32 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 	});
+
+	// Delete workout
+	$('.delete a').on('click', function(e) {
+		e.preventDefault();
+
+		var id = $(this).attr('data-user-workout');
+
+		$.ajax({
+			url: '/dashboard/delete',
+			method: 'POST',
+			data: {user_workout_id : id},
+			dataType: 'json',
+			error: function() {
+				alert('Could not follow through with ajax call.');
+			},
+			success: function(data) {
+				if (data.response === 'success') {
+					alert(data.msg);
+				} else {
+					alert(data.msg);
+				}
+			}
+		});
+
+		return false;
+	});
 	
 	// Responsive menu
 	responsiveMenu();
