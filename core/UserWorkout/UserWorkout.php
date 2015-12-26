@@ -29,6 +29,8 @@ class UserWorkout
         // User
         $user_id = $this->user->userId;
 
+        echo $this->userSelectedWorkout();
+
         // Use date to get data for certain workout or todays
         $today = (isset($_GET['date']) && !empty($_GET['date'])) ? $_GET['date'].'%'  : date('Y-m-d').'%';
 
@@ -241,13 +243,11 @@ class UserWorkout
         // Get cycle
         $stmt = $this->db->prepare("SELECT wc.id FROM workout_cycles AS wc 
             WHERE (
-                wc.workout_id = ? 
-                AND wc.id = IFNULL((select min(id) from workout_cycles where id > ?), 0)
-                OR wc.id = IFNULL((select max(id) from workout_cycles where id > ?), 
-                    (select min(id) from workout_cycles where workout_id = ?))
+                wc.id = (select id from workout_cycles where id > ? AND workout_id = ? LIMIT 1)
+                OR wc.id = (select id from workout_cycles where id < ? AND workout_id = ? LIMIT 1)
             )
             LIMIT 1");
-        $stmt->bind_param('iiii', $selected_workout, $recent_cycle, $recent_cycle, $selected_workout);
+        $stmt->bind_param('iiii', $recent_cycle, $selected_workout, $recent_cycle, $selected_workout);
         $stmt->execute();
         $stmt->bind_result($id);
         $stmt->store_result();
