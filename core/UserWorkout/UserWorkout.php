@@ -243,8 +243,9 @@ class UserWorkout
         // Get cycle
         $stmt = $this->db->prepare("SELECT wc.id FROM workout_cycles AS wc 
             WHERE (
-                wc.id = (select id from workout_cycles where id > ? AND workout_id = ? LIMIT 1)
-                OR wc.id = (select id from workout_cycles where id < ? AND workout_id = ? LIMIT 1)
+                wc.id = 
+                IFNULL((select min(id) from workout_cycles where id > ? AND workout_id = ? ORDER BY id ASC LIMIT 1),
+                (select id from workout_cycles where id < ? AND workout_id = ? LIMIT 1))
             )
             LIMIT 1");
         $stmt->bind_param('iiii', $recent_cycle, $selected_workout, $recent_cycle, $selected_workout);
