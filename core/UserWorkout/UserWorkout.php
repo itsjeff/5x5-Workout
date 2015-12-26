@@ -28,9 +28,7 @@ class UserWorkout
     {
         // User
         $user_id = $this->user->userId;
-
-        echo $this->userSelectedWorkout();
-
+        
         // Use date to get data for certain workout or todays
         $today = (isset($_GET['date']) && !empty($_GET['date'])) ? $_GET['date'].'%'  : date('Y-m-d').'%';
 
