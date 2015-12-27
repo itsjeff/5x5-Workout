@@ -105,21 +105,25 @@
             height: 30px;
             width: 30px;
             background: #5789CD;
-            display: block;
+            display: table;
             color: #fff;
             margin: 0 auto;
-            padding-top: .35em;
             border-radius: 50%;
+
+            .v-align {
+                display: table-cell;
+                vertical-align: middle;
+            }
         }
 
         a {
-            font-weight: normal;
             text-decoration: none;
         }
 
         &.active {
             a {
                 color: #000;
+                font-weight: normal;
             }
         }
     }
