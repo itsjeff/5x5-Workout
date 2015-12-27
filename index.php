@@ -2,10 +2,6 @@
 
 require_once 'settings.php';
 
-// User information
-if ($user->isSignedIn()) {
-    $userId = $user->userId;
-}
 
 // Pages
 switch ($request->getBaseUri()) {
