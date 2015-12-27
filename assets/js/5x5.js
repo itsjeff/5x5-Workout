@@ -43,9 +43,11 @@ $(document).ready(function() {
 		user_workout_id = $(this).closest('.excercise').attr('data-workout-id');
 		exercise_name = $('#excercise_' + user_workout_id).find('.excercise-name').html();
 		excercise_weight = $('#excercise_' + user_workout_id).find('.weight span').html();
+		plates = (excercise_weight/2);
 		
 		// Populate name and current weight
 		panel_wrapper.find('.excercise-name').html(exercise_name);
+		panel_wrapper.find('.add-weight').html(plates);
 		panel_wrapper.find('input[name="weight"]').val(excercise_weight);
 
 		e.preventDefault();
@@ -61,6 +63,10 @@ $(document).ready(function() {
 		else if ($(this).attr('name') == 'add') {
 			panel_weight.val((+panel_weight.val() + +.5));	
 		}
+
+		plates = (panel_weight.val()/2);
+
+		panel_wrapper.find('.add-weight').html(plates);
 
 		e.preventDefault();
 	});
@@ -84,7 +90,7 @@ $(document).ready(function() {
 		var id = $(this).attr('data-user-workout');
 
 		$.ajax({
-			url: '/dashboard/delete',
+			url: '/projects/5x5/dashboard/delete',
 			method: 'POST',
 			data: {user_workout_id : id},
 			dataType: 'json',

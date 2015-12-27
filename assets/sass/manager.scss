@@ -514,9 +514,29 @@ a {
         }
     }
 
+    #finish {
+        padding: 0 1em 1em;
+
+        input[type="submit"] {
+            border-radius: 3px;
+            padding: 0;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1em;
+        }
+    }
+
     /**
      * Excercise
      */
+    .excercise {
+        margin: 0;
+
+        &:not(:first-child) {
+            margin: 1em 0 0;
+        }
+    }
+
     .excercise .title .right .text {
         display: none;
     }
