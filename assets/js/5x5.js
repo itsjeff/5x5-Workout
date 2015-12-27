@@ -90,7 +90,7 @@ $(document).ready(function() {
 		var id = $(this).attr('data-user-workout');
 
 		$.ajax({
-			url: '/projects/5x5/dashboard/delete',
+			url: '/dashboard/delete',
 			method: 'POST',
 			data: {user_workout_id : id},
 			dataType: 'json',
