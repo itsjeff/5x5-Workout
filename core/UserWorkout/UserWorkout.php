@@ -227,7 +227,7 @@ class UserWorkout
     public function userSelectedWorkout()
     {
         $user_id = $this->user->userId;
-        $selected_workout = $this->user->workout();
+        $selected_workout = $this->user->data('routine');
         $recent_cycle = 0;
 
         // Get cycle

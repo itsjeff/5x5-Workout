@@ -8,7 +8,7 @@
 			<div class="padding">
 				<p>Select a workout you would like to use: </p>
 
-				<?php $selected_workout = $user->workout(); ?>
+				<?php $selected_workout = $user->data('routine'); ?>
 				
 				<ul class="workout-list">
 					<?php 
