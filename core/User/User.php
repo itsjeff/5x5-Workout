@@ -9,6 +9,8 @@ class User
 
 	public $userId;
 
+	public $userData;
+
 
 	/**
 	 * Construct
@@ -49,7 +51,7 @@ class User
 	}
 
 	/**
-	 * User data
+	 * Prepare user data
 	 */
 	public function prepareUserData()
 	{
@@ -72,7 +74,10 @@ class User
 	}
 
 	/**
+	 * Get user data
 	 * 
+	 * @param  string $key Specific user data key ie. email
+	 * @return mixed       Return user data
 	 */
 	public function data($key) {
 		return $this->userData[$key];
