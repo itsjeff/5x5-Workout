@@ -19,6 +19,8 @@ class User
 
 		if ($this->isSignedIn()) {
 			$this->userId = (int)$_SESSION['userId'];
+
+			$this->prepareUserData();
 		}
 	}
 
@@ -47,32 +49,32 @@ class User
 	}
 
 	/**
-	 * 
+	 * User data
 	 */
-	public function email() {
-		$user_stmt = $this->db->prepare("SELECT email FROM users WHERE id = ?");
+	public function prepareUserData()
+	{
+		$query = "SELECT email, selected_workout_id FROM users AS u 
+			LEFT JOIN users_profile AS profile ON profile.user_id = u.id
+			WHERE u.id = ?";
+
+		$user_stmt = $this->db->prepare($query);
 
 		$user_stmt->bind_param('i', $this->userId);
 		$user_stmt->execute();
-		$user_stmt->bind_result($myEmail);
+		$user_stmt->bind_result($email, $routine);
 		$user_stmt->store_result();
 		$user_stmt->fetch();
 
-		return $myEmail;
+		$this->userData = [
+			'email' => $email,
+			'routine' => $routine
+			];	
 	}
 
 	/**
 	 * 
 	 */
-	public function workout() {
-		$user_stmt = $this->db->prepare("SELECT selected_workout_id FROM users_profile WHERE user_id = ?");
-
-		$user_stmt->bind_param('i', $this->userId);
-		$user_stmt->execute();
-		$user_stmt->bind_result($selected_workout_id);
-		$user_stmt->store_result();
-		$user_stmt->fetch();
-
-		return $selected_workout_id;
+	public function data($key) {
+		return $this->userData[$key];
 	}
 }
