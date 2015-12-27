@@ -54,7 +54,7 @@ $daysInWeek = 1;
 			<h2>Calendar</h2>
 		</div>
 		
-		<div class="padding">
+		<div class="calendar-container">
 			<div class="calendar-wrapper">
 				<div class="calendar-month">
 					<a href="?month=<?php echo $date_next; ?>" class="next">next</a>
@@ -99,9 +99,9 @@ $daysInWeek = 1;
 						
 						$workoutDate = $year.'-'.$padMonth.'-'.$padDay;
 						
-						echo '<td class="calendar-day active"><a href="'.$request->url('dashboard?date='.$workoutDate).'" title="View workout for this day">'.$day.'</a></td>';
+						echo '<td class="calendar-day active"><a href="'.$request->url('dashboard?date='.$workoutDate).'" title="View workout for this day"><span class="day"><span class="circle">'.$day.'</span></span></a></td>';
 					} else {
-						echo '<td class="calendar-day">'.$day.'</td>';
+						echo '<td class="calendar-day"><a href=""><span class="day">'.$day.'</span></a></td>';
 					}
 					
 					$daysInWeek++;

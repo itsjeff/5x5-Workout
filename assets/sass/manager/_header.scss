@@ -83,11 +83,44 @@ header {
     }
 
 
+@media all and (max-width: 900px) {
+    // Navigation
+    header {
+        padding-right: 0px;
+        }
+    
+    .backNav {
+        display: none;
+    }
+    
+    #nav {
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #nav ul li {
+        display: inline-block;
+    }
+    
+    #nav ul li a{
+        display: inline-block;
+    }
+    
+    #nav ul li a:hover {
+        background-color: #f7f7f7;
+        }
+}
+
+
 @media all and (max-width: 600px) {
-    /*
-     * Nav
-     */ 
+    // Navigation
     #nav {   
+        border: 0;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11);
+
         ul li .ico-workout {
             background: url('../images/ico-workout.png') 50% 50% no-repeat;
             background-size: 25px 25px;

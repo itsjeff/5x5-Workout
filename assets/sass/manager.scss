@@ -1,4 +1,5 @@
 @import "manager/header";
+@import "manager/calendar";
 
 * {
     margin: 0;
@@ -361,75 +362,7 @@ a {
 .panel-box .submit:hover {
     color: #fff;
     }
-    
-    
-/*
- * Calendar
- */
-.calendar-wrapper {
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-}
 
-.calendar-month {
-    padding: 1em;
-    background: #fff;
-    text-align: center;
-}
-
-.calendar-month .next {
-    float: right;
-}
-
-.calendar-month .prev {
-    float: left;
-}
-
-.calendar-month .next,
-.calendar-month .prev {
-    display: inline-block;
-    border: 1px solid #ccc;
-    background: #f7f7f7;
-    border-radius: 3px;
-    padding: .2em .6em;
-    text-decoration: none;
-    position: relative;
-    top: -3px;
-}
-
-.calendar {
-    background-color: #efefef;
-    border-spacing: 0px;
-    margin-bottom: 54px;
-    width: 100%;
-    }   
-    
-.calendar th {
-    background-color: #5789cd;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    padding: 10px 0;
-    width: 14.2%
-    }
-    
-.calendar td {  
-    text-align: center;
-    padding: 40px 0;
-    width: 14.2%
-    }
-    
-.calendar-day {
-    background-color: #fff;
-    }
-    
-.calendar-day.active {
-    background-color: #adcaf2;
-    }
-    
-.calendar-day.active a {
-    color: #fff;
-    font-weight: bold;
-    }
 
 /**
  * Workout list
@@ -494,37 +427,9 @@ a {
         background-color: #f7f7f7;
     }
     
-    header {
-        padding-right: 0px;
-        }
-    
-    .backNav {
-        display: none;
-    }
-    
-    #nav {
-        background-color: #fff;
-        border-bottom: 1px solid #ccc;
-        float: none;
-        width: 100%;
-        text-align: center;
-    }
-    
     #content {
         margin: 0;
     }
-    
-    #nav ul li {
-        display: inline-block;
-    }
-    
-    #nav ul li a{
-        display: inline-block;
-    }
-    
-    #nav ul li a:hover {
-        background-color: #f7f7f7;
-        }
         
     .date {
         background-color: #fff;
@@ -587,11 +492,6 @@ a {
         padding: 0 18px;
         width: 100%;
         }
-        
-    #calendar td {  
-        font-size: 14px;
-        padding: 15px 0;
-        }
 
     // Workout
     .page-title {
@@ -627,12 +527,5 @@ a {
 
     .excercise .sets span:last-child {
         margin: 0;
-    }
-
-    /**
-     * Calendar
-     */
-    .calendar td {
-        padding: 10px 0;
     }
 }

@@ -1,0 +1,142 @@
+.calendar-container {
+    padding: 1em;
+}
+
+.calendar-wrapper {
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.calendar-month {
+    padding: 1em;
+    background: #fff;
+    text-align: center;
+}
+
+.calendar-month .next {
+    float: right;
+}
+
+.calendar-month .prev {
+    float: left;
+}
+
+.calendar-month .next,
+.calendar-month .prev {
+    display: inline-block;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    border-radius: 3px;
+    padding: .2em .6em;
+    text-decoration: none;
+    position: relative;
+    top: -3px;
+}
+
+.calendar {
+    background-color: #efefef;
+    border-spacing: 0px;
+    margin-bottom: 54px;
+    width: 100%;
+    }   
+    
+.calendar th {
+    background-color: #5789cd;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+    width: 14.2%
+    }
+    
+.calendar td {  
+    text-align: center;
+    padding: 40px 0;
+    width: 14.2%
+    }
+    
+.calendar-day {
+    background-color: #fff;
+    }
+    
+.calendar-day.active {
+    background-color: #adcaf2;
+    }
+    
+.calendar-day.active a {
+    color: #fff;
+    font-weight: bold;
+    }
+
+
+@media all and (max-width: 600px) {  
+    .calendar-wrapper {
+        box-shadow: 0 0 0;
+    }
+
+    .calendar-container {
+        padding: 0;
+    }
+
+    .calendar {
+        background: none;
+    }
+
+    .calendar-month {
+        background: #5789CD;
+        color: #fff;
+
+        .next, .prev {
+            border: 0;
+            font-size: .75em;
+            text-transform: uppercase;
+            line-height: 1.8em;
+        }
+    }
+
+    .calendar-day {
+        background: none;
+
+        .day {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .circle {
+            height: 30px;
+            width: 30px;
+            background: #5789CD;
+            display: block;
+            color: #fff;
+            margin: 0 auto;
+            padding-top: .35em;
+            border-radius: 50%;
+        }
+
+        a {
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        &.active {
+            a {
+                color: #000;
+            }
+        }
+    }
+    
+    .calendar-day.active {
+        background: none;
+    }
+
+    .calendar td {  
+        font-size: 14px;
+        padding: 0;
+
+        a {
+            height: 50px;
+            display: table;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
