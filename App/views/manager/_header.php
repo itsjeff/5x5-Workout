@@ -16,7 +16,7 @@
 			<div class="userSign">
 				<a id="drop" href="#">Menu</a>
 				<ul>
-					<li><a href="<?php echo $request->url(); ?>">Welcome, <strong><?php echo $myEmail; ?></strong></a></li>
+					<li><a href="<?php echo $request->url(); ?>">Welcome, <strong><?php echo $user->data('email'); ?></strong></a></li>
 					<li><a href="<?php echo $request->url('signout'); ?>">Sign out</a></li>
 				</ul>
 			</div>
