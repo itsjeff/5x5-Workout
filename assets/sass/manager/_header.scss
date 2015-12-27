@@ -1,5 +1,6 @@
 header {
     background-color: #1963bf;
+    color: #fff;
     position: relative;
     height: 50px;
     padding: 0 18px;
@@ -33,7 +34,31 @@ header {
     padding: 0px;
     width: 30px;
     }
+
+// User nav
+.userSign {
+    float: right;
+}
+
+.userSign li {
+    display: inline-block;
+}
+
+.userSign li a {
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    padding: 0 15px;
+    text-decoration: none;
+    font-size: 14px;
+    }
     
+.userSign li a:hover {
+    background-color: #333;
+    color: #fff;
+    }
+   
+// Nav row 
 #nav {
     float: left;
     width: 300px;
@@ -116,6 +141,76 @@ header {
 
 
 @media all and (max-width: 600px) {
+    // User nav
+    #drop {
+        background-size: 28px 28px;
+        display: table;       
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 40px;
+        }
+
+    .hamburger-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+
+        .hamburger {
+            border-top: 2px solid #fff;
+            width: 25px;
+            height: 14px;
+            display: block;
+            position: relative;
+            margin: 0 auto;
+
+            &:before {
+                content: '';
+                display: block;
+                border-bottom: 2px solid #fff;    
+                top: 4px;
+                width: 100%;
+                position: absolute;
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                border-bottom: 2px solid #fff;    
+                bottom: 0;
+                width: 100%;
+                position: absolute;
+            }
+        }
+    }
+        
+    .userSign {
+        float: right;
+        overflow: hidden;
+        right: 0;
+        }
+        
+    .userSign ul {
+        display: none;
+        background-color: #222;
+        left: 0;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+    }
+        
+    .userSign ul li {
+        display: block;
+        line-height: 40px;
+        width: 100%;
+        }
+        
+    .userSign li a {
+        height: none;
+        margin: 0;
+        padding: 0 18px;
+        width: 100%;
+        }
+
     // Navigation
     #nav {   
         border: 0;
@@ -137,7 +232,7 @@ header {
 
         ul li .ico-calendar {
             background: url('../images/ico-calendar.png') 50% 50% no-repeat;
-            background-size: 25px 25px;
+            background-size: 22px 22px;
             width: 45px;
             text-indent: -9999px;
         }

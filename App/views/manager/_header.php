@@ -6,6 +6,7 @@
 	<title><?php echo $head_title; ?> | Workout Manager</title>
 
 	<link rel="stylesheet" href="<?php echo $request->url('assets/css/manager.css'); ?>">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	
 	<script src="<?php echo $request->url('assets/js/jquery.js'); ?>"></script>
 	<script src="<?php echo $request->url('assets/js/5x5.js'); ?>"></script>
@@ -14,14 +15,14 @@
 	<header>
     	<div class="wrapper">
 			<div class="userSign">
-				<a id="drop" href="#">Menu</a>
+				<a id="drop" href="#"><span class="hamburger-wrapper"><span class="hamburger"></span></span></a>
 				<ul>
 					<li><a href="<?php echo $request->url(); ?>">Welcome, <strong><?php echo $user->data('email'); ?></strong></a></li>
 					<li><a href="<?php echo $request->url('signout'); ?>">Sign out</a></li>
 				</ul>
 			</div>
 			
-			<h1><a href="index.php">WM - <?php echo $head_title; ?></a></h1>
+			<h1>WM - <?php echo $head_title; ?></h1>
         </div>
     </header>
 	
